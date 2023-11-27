@@ -18,3 +18,4 @@ String parita = (prodotto % 2 == 0) ? "Pari" : "Dispari";
 
 // stampo risultato
 Console.WriteLine("Il risultato è " +  risultato + "\nIl risultato è "+ parita);
+//Coto
