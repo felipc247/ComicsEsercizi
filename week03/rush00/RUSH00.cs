@@ -16,6 +16,15 @@ namespace RUSH00
             Console.WriteLine(testo);
         }
 
+        static void stampaScenario(String[] scenario)
+        {
+            for (int i = 0; i < scenario.Length; i++)
+            {
+                stampaTesto(scenario[i]);
+                pausa();
+            }
+        }
+
         // separatore di testi
         static void spezzaTesto()
         {
@@ -44,6 +53,8 @@ namespace RUSH00
             affetto += incremento;
             if (affetto > 100) affetto = 100;// non si può superare 100
         }
+
+        // stampa le scelte disponibili, prende input la risposta e la restituisce 
 
         static int scelta(String[] scelte)
         {
@@ -92,6 +103,7 @@ namespace RUSH00
         }
 
         // aggiungi l'oggetto all'inventario
+
         static void aggiungiOggetto(Enum oggetto, ref Enum[] inventario)
         {
             for (int i = 0; i < inventario.Length; i++)
@@ -99,11 +111,17 @@ namespace RUSH00
                 if (inventario[i].Equals(oggetti.VUOTO))
                 {
                     inventario[i] = oggetto;
-                    stampaTesto("||| " + inventario[i]);
                     break;
                 }
             }
 
+            mostraInventario(inventario);
+
+
+        }
+
+        static void mostraInventario(Enum[] inventario)
+        {
             for (int i = 0; i < inventario.Length; i++)
             {
                 stampaTesto("||| " + inventario[i]);
@@ -121,17 +139,57 @@ namespace RUSH00
             {
                 inventario[i] = oggetti.VUOTO;
             }
-            // testi
+
+            // TESTI
 
             // introduzione
             String[] introduzione = new string[4];
-            introduzione[0] = "Il fuoco scoppiettava, e l'ebbrezza dell'amicizia mi spinse a una scommessa folle:\navventurarmi ubriaco nel bosco.\nTra le ombre, incontrai il Fauno Giocondo, e in quella notte di risate e scommesse, stringemmo un patto.\nDovevo aiutarlo a recuperare la spada magica Bacchusbane sull'Isola di Luminara.\nUn'epica avventura, un patto sigillato tra il vino e la promessa di un destino incerto.";
+            introduzione[0] = "Il fuoco scoppiettava, e l'ebbrezza dell'amicizia mi spinse a una scommessa folle:" +
+                "\navventurarmi ubriaco nel bosco." +
+                "\nTra le ombre, incontrai il Fauno Giocondo, e in quella notte di risate e scommesse, stringemmo un patto." +
+                "\nDovevo aiutarlo a recuperare la spada magica Bacchusbane sull'Isola di Luminara." +
+                "\nUn'epica avventura, un patto sigillato tra il vino e la promessa di un destino incerto.";
+
             introduzione[1] = "Tu: Quindi come proseguiamo da qui in poi?";
-            introduzione[2] = "Giocondo: Allora Briachella, prima di tutto dovremo fare tappa dai Gelidi Elfi Argentati sulle Cime Argentate per ottenere la loro sacra veste, \npoi dobbiamo attraversare la Valle delle Ombre facendo attenzione agli Orchi delle Gole Oscure ,\nsuperata quella arriveremo ai Rifugi di Cristallo, casa dei Nani per ottenere degli occhiali di cristallo d'ombra,\ndopodichè dovremo affrontare l'indovinello della Torre del Vento dove i guardiani proteggono la sacra Vela di Eolo \n infine potremmo dirigerci all'isola di Luminara dove nel tempio si loca la sacra Spada Bacchusbane";
+
+            introduzione[2] = "Giocondo: Allora Briachella, " +
+                "prima di tutto dovremo fare tappa dai Gelidi Elfi Argentati" +
+                " sulle Cime Argentate per ottenere la loro sacra veste, \n" +
+                "poi dobbiamo attraversare la Valle delle Ombre facendo attenzione agli Orchi delle Gole Oscure ," +
+                "\nsuperata quella arriveremo ai Rifugi di Cristallo, casa dei Nani per ottenere degli occhiali di cristallo d'ombra," +
+                "\ndopodichè dovremo affrontare l'indovinello della Torre del Vento dove i guardiani proteggono la sacra Vela di Eolo \n" +
+                "infine potremmo dirigerci all'isola di Luminara dove nel tempio si loca la sacra Spada Bacchusbane";
+
             introduzione[3] = "(annuisci e ti prepari ad affrontare questa fantastica avventura)";
+
+            // finali
+            String[] finali = new String[3];
+
+            // vite finite
+            finali[0] = "Le forze ti hanno abbandonato, forse è il momento di andare in palestra?\n" +
+                "** Sei morto **";
+
+            // Missione completata con affetto < 40
+            finali[1] = "Hai completato la missione! Saluti Giocondo e te ne vai per la tua strada\n" +
+                "Magati vi rivedrete un giorno...\n" +
+                "** Finale Neutrale **";
+
+            // Non sei stato attento e ti hanno derubato
+            finali[2] = "Che strano! Mi sento molto più leggero...\n" +
+                "** I goblin vi hanno rubato tutto **";
+
             // vettori per contenere i testi relativi ad ogni scenario
 
+            // 4 scenari principali e 2 bonus (possibili)
+            // 0 -> scenario1, 1 -> scenario2
+            // 2 -> scenario3, 3 -> scenario4
+            // 4 -> bonus1, 5 -> bonus 2
             int[] scenari_ScelteInt = new int[6];
+
+            // lo uso per non dover scrivere ogni volta il numero scenari_ScelteInt = new int[numero]
+            // in quanto il numero si ripete più volte per ogni scenario
+            // posso semplicemente cambiarlo una sola volta con il cambio scenario
+            int scenarioCor = 0;
 
             // scenario 1
             String[] scenario1 = new string[4];
@@ -152,57 +210,86 @@ namespace RUSH00
 
             // scenario 2
             String[] scenario2 = new string[3];
+
+            // scenario 3
             String[] scenario3 = new string[3];
+
+            // scenario 4
             String[] scenario4 = new string[3];
 
-            // vettori per scenari bonus
-            String[] bonus1 = new string[3];
+            // scenari bonus
+
+            // bonus 1
+            String[] bonus1 = new string[1];
+            String[] bonus1_Scelte = new String[2];
+            String[] bonus1_Risultato = new String[bonus1_Scelte.Length];
+
+            //TODO
+            bonus1[0] = "Incontri un'elfa che ti guarda intensamente";
+
+            bonus1_Scelte[0] = "Avvicinati";
+            bonus1_Scelte[1] = "Meglio lasciar perdere";
+
+            bonus1_Risultato[0] = "Dannazione! HAI PERSO 2 VITE, la signorina picchia duro con quella padella...";
+            bonus1_Risultato[1] = "Ti allontani indifferente, dopotutto essere single ha i suoi vantaggi...";
+
+
+            // bonus 2
             String[] bonus2 = new string[3];
 
+
             // INTRODUZIONE
-            stampaTesto(introduzione[0]);
 
-            pausa();
-
-            stampaTesto(introduzione[1]);
-
-            pausa();
-
-            stampaTesto(introduzione[2]);
-
-            pausa();
-
-            stampaTesto(introduzione[3]);
+            stampaScenario(introduzione);
 
             spezzaTesto();
 
             // PRIMO SCENARIO
 
-            stampaTesto(scenario1[0]);
+            scenarioCor = 0;
 
-            pausa();
+            stampaScenario(scenario1);
 
-            stampaTesto(scenario1[1]);
+            scenari_ScelteInt[scenarioCor] = scelta(scenario1_Scelte);
 
-            pausa();
-
-            stampaTesto(scenario1[2]);
-
-            pausa();
-
-            stampaTesto(scenario1[3]);
-
-            scenari_ScelteInt[0] = scelta(scenario1_Scelte);
-
-            if (scenari_ScelteInt[0] == 1)
+            if (scenari_ScelteInt[scenarioCor] == 1)
             {
+                // Successo, la diplomazia convince il capo elfo che ti aiuta dandoti la Veste
                 aggiungiOggetto(oggetti.VESTE, ref inventario);
-                stampaTesto(scenario1_Risultato[scenari_ScelteInt[0] - 1]);
+                stampaTesto(scenario1_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
             }
             else
             {
-                stampaTesto(scenario1_Risultato[scenari_ScelteInt[0] - 1]);
+                // Fallimento, hai mentito e vieni cacciato
+                stampaTesto(scenario1_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
             }
+
+            spezzaTesto();
+
+            // BONUS 1
+
+            scenarioCor = 4;
+
+            stampaScenario(bonus1);
+
+            scenari_ScelteInt[scenarioCor] = scelta(bonus1_Scelte);
+
+            if (scenari_ScelteInt[scenarioCor] == 1)
+            {
+                // Fallimento, vieni padellato e perdi 2 vite (ahia)
+                perdiVita(ref vite);
+                perdiVita(ref vite);
+                stampaTesto(bonus1_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+            }
+            else
+            {
+                // Successo, l'indifferenza fa la differenza a volte, ignori l'elfa
+                stampaTesto(bonus1_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+            }
+
+            //TODO invece di cliccare qualsiasi tasto
+            // mettiamo dei pulsanti per controllare le vite, oggetti etc...
+            // si prosegue con invio o space
         }
     }
 }
