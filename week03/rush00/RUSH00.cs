@@ -16,12 +16,22 @@ namespace RUSH00
             Console.WriteLine(testo);
         }
 
-        static void stampaScenario(String[] scenario)
+        // passo bool come parametro poiché in alcuni casi non ho bisogno dell'ultima pausa
+        // in quanto avendo la possibilità di chiedere cosa si vuole fare alla fine
+        // l'ultima pausa deve essere sostituita da quella con parametri
+        static void stampaScenario(String[] scenario, bool ultimaPausa)
         {
             for (int i = 0; i < scenario.Length; i++)
             {
                 stampaTesto(scenario[i]);
-                pausa();
+                if (i == scenario.Length - 1)
+                {
+                    if (ultimaPausa) pausa();
+                }
+                else
+                {
+                    pausa();
+                }
             }
         }
 
@@ -72,8 +82,14 @@ namespace RUSH00
                 try
                 {
                     scelta = int.Parse(Console.ReadLine());
-                    if (scelta > scelte.Length + 1 || scelta < 1) scelta = -1;
-                    break;
+                    if (scelta > scelte.Length || scelta < 1)
+                    {
+                        scelta = -1;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
                 catch
                 {
@@ -85,10 +101,82 @@ namespace RUSH00
 
         }
 
-        // obbliga a cliccare un tasto per andare avanti
         static void pausa()
         {
-            Console.ReadLine();
+            Console.ReadKey();
+            stampaTesto("");
+        }
+
+        // obbliga a cliccare un tasto per andare avanti
+        static void pausa(Enum[] inventario, int vite, int affetto)
+        {
+            stampaTesto("\nCosa vuoi fare:" +
+                "\n'INVIO' continua" +
+                "\n'i' mostra inventario" +
+                "\n'v' mostra vite" +
+                "\n'a' mostra affetto" +
+                "\n's' mostra tutto");
+            // prendo char da input
+            char inputChar = Console.ReadKey().KeyChar;
+            stampaTesto("\n");
+            // ottengo l'ASCII corrispondente
+            int asciiValue = (int)inputChar;
+            // in base all'input si esegue un'azione
+            switch (asciiValue)
+            {
+                case 13:
+                    // "invio" si prosegue
+                    break;
+                case 115:
+                    // "s" mostra tutto
+                    stampaTesto("Inventario:");
+                    mostraInventario(inventario);
+                    stampaTesto("Vite:");
+                    switch (vite)
+                    {
+                        case 1:
+                            stampaTesto(" __  __ \r\n/  \\/  \\\r\n\\      /\r\n \\    / \r\n  ''''  ");
+                            break;
+                        case 2:
+                            stampaTesto(" __  __       __  __ \r\n/  \\/  \\     /  \\/  \\\r\n\\      /     \\      /\r\n \\    /       \\    / \r\n  ''''         ''''  ");
+                            break;
+                        case 3:
+                            stampaTesto(" __  __       __  __       __  __\r\n/  \\/  \\     /  \\/  \\     /  \\/  \\\r\n\\      /     \\      /     \\      /\r\n \\    /       \\    /       \\    /\r\n  ''''         ''''         ''''");
+                            break;
+                    }
+                    stampaTesto("Affetto = " + affetto);
+                    break;
+                case 105:
+                    // "i"
+                    stampaTesto("Inventario:");
+                    mostraInventario(inventario);
+                    break;
+                case 118:
+                    // "v" mostra vite
+                    stampaTesto("Vite:");
+                    switch (vite)
+                    {
+                        case 1:
+                            stampaTesto(" __  __ \r\n/  \\/  \\\r\n\\      /\r\n \\    / \r\n  ''''  ");
+                            break;
+                        case 2:
+                            stampaTesto(" __  __       __  __ \r\n/  \\/  \\     /  \\/  \\\r\n\\      /     \\      /\r\n \\    /       \\    / \r\n  ''''         ''''  ");
+                            break;
+                        case 3:
+                            stampaTesto(" __  __       __  __       __  __\r\n/  \\/  \\     /  \\/  \\     /  \\/  \\\r\n\\      /     \\      /     \\      /\r\n \\    /       \\    /       \\    /\r\n  ''''         ''''         ''''");
+                            break;
+                    }
+                    break;
+                case 97:
+                    // "a" mostra affetto
+                    stampaTesto("Affetto = " + affetto);
+                    break;
+
+            }
+
+            // se ho premuto invio vado avanti, altrimenti
+            if (asciiValue != 13) pausa(inventario, vite, affetto);
+
         }
 
         // ENUM per gli oggetti definiti
@@ -114,10 +202,6 @@ namespace RUSH00
                     break;
                 }
             }
-
-            mostraInventario(inventario);
-
-
         }
 
         static void mostraInventario(Enum[] inventario)
@@ -139,6 +223,7 @@ namespace RUSH00
             {
                 inventario[i] = oggetti.VUOTO;
             }
+            Random ra = new Random();
 
             // TESTI
 
@@ -154,11 +239,11 @@ namespace RUSH00
 
             introduzione[2] = "Giocondo: Allora Briachella, " +
                 "prima di tutto dovremo fare tappa dai Gelidi Elfi Argentati" +
-                " sulle Cime Argentate per ottenere la loro sacra veste, \n" +
-                "poi dobbiamo attraversare la Valle delle Ombre facendo attenzione agli Orchi delle Gole Oscure ," +
+                "\nsulle Cime Argentate per ottenere la loro sacra veste," +
+                "\npoi dobbiamo attraversare la Valle delle Ombre facendo attenzione agli Orchi delle Gole Oscure ," +
                 "\nsuperata quella arriveremo ai Rifugi di Cristallo, casa dei Nani per ottenere degli occhiali di cristallo d'ombra," +
-                "\ndopodichè dovremo affrontare l'indovinello della Torre del Vento dove i guardiani proteggono la sacra Vela di Eolo \n" +
-                "infine potremmo dirigerci all'isola di Luminara dove nel tempio si loca la sacra Spada Bacchusbane";
+                "\ndopodichè dovremo affrontare l'indovinello della Torre del Vento dove i guardiani proteggono la sacra Vela di Eolo" +
+                "\ninfine potremmo dirigerci all'isola di Luminara dove nel tempio si loca la sacra Spada Bacchusbane";
 
             introduzione[3] = "(annuisci e ti prepari ad affrontare questa fantastica avventura)";
 
@@ -167,20 +252,21 @@ namespace RUSH00
 
             // vite finite
             finali[0] = "Le forze ti hanno abbandonato, forse è il momento di andare in palestra?\n" +
-                "** Sei morto **";
+                "** Vatti ad allenare, pirla **";
 
-            // Missione completata con affetto < 40
-            finali[1] = "Hai completato la missione! Saluti Giocondo e te ne vai per la tua strada\n" +
-                "Magati vi rivedrete un giorno...\n" +
-                "** Finale Neutrale **";
+            // Missione completata con affetto 60 
+            finali[1] = "Tu:Il nostro contratto termina qui \n" +
+                "Giocondo:si e come da esso stipulato ti riportero a casa tu, addio Briachella \n" +
+               "** Finale Neutrale **";
 
-            // Non sei stato attento e ti hanno derubato
-            finali[2] = "Che strano! Mi sento molto più leggero...\n" +
-                "** I goblin vi hanno rubato tutto **";
+            // Missione completata con affetto 100
+            finali[2] = "Tu:Sembi fin'troitato, hai un piano in mento vero?\nppo ec" +
+                "Giocondo:Ormai mi conosci, se devo essere onesto con te questa spada non la voleva Dioniso,\n" +
+                "la stavo cercando io per poter uccidere Dioniso e prendere il suo posto vuoi aiutarmi?\n";
 
             // vettori per contenere i testi relativi ad ogni scenario
 
-            // 4 scenari principali e 2 bonus (possibili)
+            // 4 scenari principali e 1 bonus (possibile)
             // 0 -> scenario1, 1 -> scenario2
             // 2 -> scenario3, 3 -> scenario4
             // 4 -> bonus1, 5 -> bonus 2
@@ -192,11 +278,11 @@ namespace RUSH00
             int scenarioCor = 0;
 
             // scenario 1
-            String[] scenario1 = new string[4];
-            String[] scenario1_Scelte = new string[2];
-            String[] scenario1_Risultato = new string[scenario1_Scelte.Length];
+            String[] scenario1 = new String[4];
+            String[] scenario1_Scelte = new String[2];
+            String[] scenario1_Risultato = new String[scenario1_Scelte.Length];
 
-            // 
+
             scenario1[0] = "Capo elfo:Benvenuto avventuriero, cosa ti porta qui da noi elfi?";
             scenario1[1] = "Tu:Grande capo elfo, sono giunto qui da voi per chiedere aiuto";
             scenario1[2] = "Capo elfo: Parla pure avventuriero,cerchero di aiutarti quanto possibile";
@@ -205,17 +291,64 @@ namespace RUSH00
             scenario1_Scelte[0] = "Sii diplomatico dicendo la verità ";
             scenario1_Scelte[1] = "Menti";
 
-            scenario1_Risultato[0] = "Hai ottenuto una VESTE magica! Potrebbe tornare utile...";
-            scenario1_Risultato[1] = "Mentire sembrava una buona idea, ma il Capo elfo non la pensava ugualmente.\nVieni cacciato dal villaggio e prosegui nell'avventura";
+
+            scenario1_Risultato[0] = "Hai otteto.nuto una VESTE magica! Potrebbe tornare utile..." +
+                "\nTu:Quello che le chiedo e di prestarmi Una delle vostre Vesti, " +
+                "\ncosi che Io possa ragiungere la mia destinazione senza il pericolo che il Miasma delle Ombre comporti." +
+                "\nLe prometto che terminato il mio viagio la riportero da voi intatta." +
+                "\nCapo Elfo:(sorpreso da la tua natura onorevole)Molto bene, guardie andatte a prendere una delle vesti per questo avventuriero,\n mi fido che manterrai la tua parola." + "\n(ora che sei in posseso della Veste procedi senza il timore del Miasma)";
+            scenario1_Risultato[1] = "Tu:Sono in una avventura per ordine del Dio Dioniso e come suo Ambasciatore ti ordino di fornirmi una delle vostre +\nVesti." +
+            "Capo Elfo:(Infastidito dalla tua caractere arrogante e bene a conoscenza del fatto che" +
+            "\ndioniso non ha Abasciatori umani)" +
+            "\nOsi mentire difronte a me misero umano, ti puoi scordare la Veste," +
+            "\nritieniti fortunato che ti lascie adare via da questo villagio vivo." +
+            "\n guardie portatelo via\n." +
+            "(comprendi di aver' esagerato con la tua farsa e costretto a proseguire senza protezioni ti prepari per unlunfo e dificile viaggio)";
 
             // scenario 2
-            String[] scenario2 = new string[3];
+            String[] scenario2 = new String[3];
+            String[] scenario2_Scelte = new String[3];
+            String[] scenario2_Risultato = new String[scenario1_Scelte.Length];
+
+            scenario2[0] = "(Scendendo dalle Cime ti ritrovi nella Valle delle Ombre, un complesso di valli profonde e oscure circondato da alte vette rocciose,\n dove la lucie del sole filtra a malapena atraverso le creste delle montagne.\n Queste valli sono infestate dagli Orchi delle Gole Oscure, sono creature sotterranee con pelle scura e occhi luminescenti,\n maestri nell'arte di manipolare le ombre e intrinsecamente legati al mondo sotterraneo)";
+            scenario2[1] = "(Sai che il tuo unico modo per sopravivere e superare la valle senza essere visto)";
+            scenario2[2] = "(Senti un rumore, qualcosa si sta avicinando, vedi delle rovine in lontanaza)";
+
+
+            scenario2_Scelte[0] = "Cerchi di correre fino alle rovine in lontanaza";
+            scenario2_Scelte[1] = "Ti nascondi passando da dietro a vari massi e alberi per arivare alle rovine.";
+            scenario2_Risultato[2] = "Usando la tua veste sei praticamente in visibile, ti incamini fino alla fine della valle";
+
 
             // scenario 3
-            String[] scenario3 = new string[3];
+            String[] scenario3 = new String[3];
+            String[] scenario3_Scelte = new String[3];
+            String[] scenario3_Risultato = new String[scenario1_Scelte.Length];
+
+            scenario3[0] = "";
+            scenario3[1] = "";
+            scenario3[2] = "";
+
+            scenario3_Scelte[0] = "";
+            scenario3_Scelte[1] = "";
+
+            scenario3_Risultato[0] = "";
+            scenario3_Risultato[1] = "";
 
             // scenario 4
-            String[] scenario4 = new string[3];
+            String[] scenario4 = new String[3];
+            String[] scenario4_Scelte = new String[3];
+            String[] scenario4_Risultato = new String[scenario1_Scelte.Length];
+
+            scenario4[0] = "";
+            scenario4[1] = "";
+            scenario4[2] = "";
+
+            scenario4_Scelte[0] = "";
+            scenario4_Scelte[1] = "";
+
+            scenario4_Risultato[0] = "";
+            scenario4_Risultato[1] = "";
 
             // scenari bonus
 
@@ -224,31 +357,40 @@ namespace RUSH00
             String[] bonus1_Scelte = new String[2];
             String[] bonus1_Risultato = new String[bonus1_Scelte.Length];
 
-            //TODO
-            bonus1[0] = "Incontri un'elfa che ti guarda intensamente";
+            bonus1[0] = "(notì una ragazza molto carina che cattura la tua attenzione," +
+                "\nti distrae al punto che non ti accorgi che ormai la stai fissando da parechio tempo.)";
 
             bonus1_Scelte[0] = "Avvicinati";
             bonus1_Scelte[1] = "Meglio lasciar perdere";
 
-            bonus1_Risultato[0] = "Dannazione! HAI PERSO 2 VITE, la signorina picchia duro con quella padella...";
-            bonus1_Risultato[1] = "Ti allontani indifferente, dopotutto essere single ha i suoi vantaggi...";
-
+            bonus1_Risultato[0] = "Ragaza elfica:Guarda cosa abiamo qui, un avventuriro un po troppo curioso. (Procede col prendere una padella e ti colpiscie in testa con essa)" +
+            "\n(ti risvegli dopo qualche minutio confuso e continui nella col tuo obbietivo)";
+            bonus1_Risultato[1] = "(Quando torni in te decidi di non avicinarti)";
 
             // bonus 2
             String[] bonus2 = new string[3];
+            String[] bonus2_Scelte = new String[2];
+            String[] bonus2_Risultato = new String[bonus1_Scelte.Length];
 
+            bonus2[0] = "";
+
+            bonus2_Scelte[0] = "";
+            bonus2_Scelte[1] = "";
+
+            bonus2_Risultato[0] = "";
+            bonus2_Risultato[1] = "";
 
             // INTRODUZIONE
 
-            stampaScenario(introduzione);
+            stampaScenario(introduzione, true);
 
             spezzaTesto();
 
-            // PRIMO SCENARIO
+            //SCENARIO 1
 
             scenarioCor = 0;
 
-            stampaScenario(scenario1);
+            stampaScenario(scenario1, false);
 
             scenari_ScelteInt[scenarioCor] = scelta(scenario1_Scelte);
 
@@ -256,7 +398,10 @@ namespace RUSH00
             {
                 // Successo, la diplomazia convince il capo elfo che ti aiuta dandoti la Veste
                 aggiungiOggetto(oggetti.VESTE, ref inventario);
+                // ottieni 20 affetto
+                incrementaAffetto(ref affetto, 20);
                 stampaTesto(scenario1_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+                stampaTesto($"\nAffetto + 20");
             }
             else
             {
@@ -264,32 +409,156 @@ namespace RUSH00
                 stampaTesto(scenario1_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
             }
 
+            pausa(inventario, vite, affetto);
+
             spezzaTesto();
 
-            // BONUS 1
+            // BONUS 1 (casuale)
 
-            scenarioCor = 4;
+            // 33% di possibilità di incontrare l'elfa
+            if (ra.Next(1, 3) == 1)
+            {
+                scenarioCor = 4;
 
-            stampaScenario(bonus1);
+                stampaScenario(bonus1, true);
 
-            scenari_ScelteInt[scenarioCor] = scelta(bonus1_Scelte);
+                scenari_ScelteInt[scenarioCor] = scelta(bonus1_Scelte);
+
+                if (scenari_ScelteInt[scenarioCor] == 1)
+                {
+                    // Fallimento, vieni padellato e perdi 1 vita (ahia)
+                    perdiVita(ref vite);
+                    stampaTesto(bonus1_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+                }
+                else
+                {
+                    // Successo, l'indifferenza fa la differenza a volte, ignori l'elfa
+                    stampaTesto(bonus1_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+                }
+                pausa(inventario, vite, affetto);
+
+                spezzaTesto();
+            }
+
+
+
+            //DONE invece di cliccare qualsiasi tasto
+            // mettiamo dei pulsanti per controllare le vite, oggetti etc...
+            // si prosegue con invio o space
+
+            //TODO le scelte e gli scenari(?) cambiano in base agli oggetti nell'inventario
+            // sistema per cambiare scenari in base all'inventario
+
+            // SCENARIO 2
+
+            scenarioCor = 1;
+
+            stampaScenario(scenario2, false);
+
+            scenari_ScelteInt[scenarioCor] = scelta(scenario2_Scelte);
 
             if (scenari_ScelteInt[scenarioCor] == 1)
             {
-                // Fallimento, vieni padellato e perdi 2 vite (ahia)
-                perdiVita(ref vite);
-                perdiVita(ref vite);
-                stampaTesto(bonus1_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+
+                // ottieni 20 affetto
+                incrementaAffetto(ref affetto, 20);
+                stampaTesto(scenario2_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+                stampaTesto($"\nAffetto + 20");
             }
             else
             {
-                // Successo, l'indifferenza fa la differenza a volte, ignori l'elfa
-                stampaTesto(bonus1_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+                // Fallimento, hai mentito e vieni cacciato
+                stampaTesto(scenario2_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
             }
 
-            //TODO invece di cliccare qualsiasi tasto
-            // mettiamo dei pulsanti per controllare le vite, oggetti etc...
-            // si prosegue con invio o space
+            pausa(inventario, vite, affetto);
+
+            spezzaTesto();
+
+            // SCENARIO 3
+
+            scenarioCor = 2;
+
+            stampaScenario(scenario3, false);
+
+            scenari_ScelteInt[scenarioCor] = scelta(scenario3_Scelte);
+
+            if (scenari_ScelteInt[scenarioCor] == 1)
+            {
+
+                // ottieni 20 affetto
+                incrementaAffetto(ref affetto, 20);
+                stampaTesto(scenario3_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+                stampaTesto($"\nAffetto + 20");
+            }
+            else
+            {
+                // Fallimento, hai mentito e vieni cacciato
+                stampaTesto(scenario3_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+            }
+
+            pausa(inventario, vite, affetto);
+
+            spezzaTesto();
+
+            // SCENARIO 4
+
+            scenarioCor = 3;
+
+            stampaScenario(scenario4, false);
+
+            scenari_ScelteInt[scenarioCor] = scelta(scenario4_Scelte);
+
+            if (scenari_ScelteInt[scenarioCor] == 1)
+            {
+
+                // ottieni 20 affetto
+                incrementaAffetto(ref affetto, 20);
+                stampaTesto(scenario4_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+                stampaTesto($"\nAffetto + 20");
+            }
+            else
+            {
+                // Fallimento, hai mentito e vieni cacciato
+                stampaTesto(scenario4_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+            }
+
+            pausa(inventario, vite, affetto);
+
+            spezzaTesto();
+
+            // FINALE (in base ad affetto)
+
+            switch (affetto)
+            {
+                case 60:
+                    stampaTesto(finali[1]);
+                    break;
+                case 100:
+                    stampaTesto(finali[2]);
+                    break;
+            }
+
+            // RIASSUNTO
+
+            // Scenario 1
+            stampaTesto("");
+            if (scenari_ScelteInt[0] == 1)
+            {
+                stampaTesto("");
+            }
+            else
+            {
+
+            }
+
+
+
+            // BONUS 2
+
+
+
         }
     }
 }
+
