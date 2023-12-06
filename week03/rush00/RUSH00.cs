@@ -260,16 +260,15 @@ namespace RUSH00
                "** Finale Neutrale **";
 
             // Missione completata con affetto 100
-            finali[2] = "Tu:Sembi fin'troitato, hai un piano in mento vero?\nppo ec" +
-                "Giocondo:Ormai mi conosci, se devo essere onesto con te questa spada non la voleva Dioniso,\n" +
-                "la stavo cercando io per poter uccidere Dioniso e prendere il suo posto vuoi aiutarmi?\n";
-
+            finali[2] = "(Giocondo ti racconta le sue vere intenzioni. Egli vuole uccidere Dioniso.\n In nome della vostra profonda amicizia decidi di aiutarlo ad uccidere il dio. \n Tornate sull'isola di Dioniso e uccidete il dio)" +
+            "** Finale Plot twist **";
             // vettori per contenere i testi relativi ad ogni scenario
 
             // 4 scenari principali e 1 bonus (possibile)
-            // 0 -> scenario1, 1 -> scenario2
-            // 2 -> scenario3, 3 -> scenario4
-            // 4 -> bonus1, 5 -> bonus 2
+            // 0 -> scenario1, 1 -> scenario2 a
+            // 2 -> scenario2 b, 3 -> scenario3
+            // 4 -> scenario 4, 5 -> bonus 1
+            // bonus 2 non ha scelte
             int[] scenari_ScelteInt = new int[6];
 
             // lo uso per non dover scrivere ogni volta il numero scenari_ScelteInt = new int[numero]
@@ -292,12 +291,16 @@ namespace RUSH00
             scenario1_Scelte[1] = "Menti";
 
 
-            scenario1_Risultato[0] = "Hai otteto.nuto una VESTE magica! Potrebbe tornare utile..." +
-                "\nTu:Quello che le chiedo e di prestarmi Una delle vostre Vesti, " +
+            scenario1_Risultato[0] = "Hai ottenuto una VESTE magica! Potrebbe tornare utile..." +
+                "\nTu:Quello che le chiedo e di prestarmi una delle vostre Vesti, " +
                 "\ncosi che Io possa ragiungere la mia destinazione senza il pericolo che il Miasma delle Ombre comporti." +
                 "\nLe prometto che terminato il mio viagio la riportero da voi intatta." +
-                "\nCapo Elfo:(sorpreso da la tua natura onorevole)Molto bene, guardie andatte a prendere una delle vesti per questo avventuriero,\n mi fido che manterrai la tua parola." + "\n(ora che sei in posseso della Veste procedi senza il timore del Miasma)";
-            scenario1_Risultato[1] = "Tu:Sono in una avventura per ordine del Dio Dioniso e come suo Ambasciatore ti ordino di fornirmi una delle vostre +\nVesti." +
+                "\nCapo Elfo:(sorpreso da la tua natura onorevole)Molto bene, guardie andatte a prendere una delle vesti per questo avventuriero," +
+                "\nmi fido che manterrai la tua parola." + "\n(ora che sei in posseso della Veste procedi senza il timore del Miasma)" +
+            "\n\n    _____\r\n    |/|\\|\r\n    / | \\\r\n   /  |  \\\r\n  /   |   \\     HAI OTTENUTO UNA VESTE MAGICA!\r\n /    |    \\\r\n/___  |  ___\\\r\n    \\_|_/";
+
+
+            scenario1_Risultato[1] = "Tu:Sono in una avventura per ordine del Dio Dioniso e come suo Ambasciatore ti ordino di fornirmi una delle vostre Vesti." +
             "Capo Elfo:(Infastidito dalla tua caractere arrogante e bene a conoscenza del fatto che" +
             "\ndioniso non ha Abasciatori umani)" +
             "\nOsi mentire difronte a me misero umano, ti puoi scordare la Veste," +
@@ -308,48 +311,99 @@ namespace RUSH00
             // scenario 2
             String[] scenario2 = new String[3];
             String[] scenario2_Scelte = new String[3];
-            String[] scenario2_Risultato = new String[scenario1_Scelte.Length];
+            String[] scenario2_Scelte2 = new String[3];
+            String[] scenario2_Risultato = new String[scenario2_Scelte.Length];
+            String[] scenario2_Risultato2 = new String[scenario2_Scelte2.Length];
+            String scenario2_RisultatoIntro = "(Arrivi alle rovine ma ancora non sei al ricuro, vedi un gruppo di Orchi che sta venendo nella tua direzione)";
 
             scenario2[0] = "(Scendendo dalle Cime ti ritrovi nella Valle delle Ombre, un complesso di valli profonde e oscure circondato da alte vette rocciose,\n dove la lucie del sole filtra a malapena atraverso le creste delle montagne.\n Queste valli sono infestate dagli Orchi delle Gole Oscure, sono creature sotterranee con pelle scura e occhi luminescenti,\n maestri nell'arte di manipolare le ombre e intrinsecamente legati al mondo sotterraneo)";
             scenario2[1] = "(Sai che il tuo unico modo per sopravivere e superare la valle senza essere visto)";
             scenario2[2] = "(Senti un rumore, qualcosa si sta avicinando, vedi delle rovine in lontanaza)";
 
 
-            scenario2_Scelte[0] = "Cerchi di correre fino alle rovine in lontanaza";
-            scenario2_Scelte[1] = "Ti nascondi passando da dietro a vari massi e alberi per arivare alle rovine.";
-            scenario2_Risultato[2] = "Usando la tua veste sei praticamente in visibile, ti incamini fino alla fine della valle";
+            scenario2_Scelte[0] = "1)Cerchi di correre fino alle rovine in lontanaza";
+            scenario2_Scelte[1] = "2)Ti nascondi passando da dietro a vari massi e alberi per arivare alle rovine.";
+            scenario2_Scelte[2] = "3)Usando la tua veste sei praticamente in visibile, ti incamini fino alla fine della valle.";
 
+            scenario2_Scelte2[0] = "1)Continui a correre fino alla fine della Valle.";
+            scenario2_Scelte2[1] = "2)Resta nascosto e aspetta un'opportunita per correre fino alla fine della Valle";
+            scenario2_Scelte2[2] = "3)Entra nella porta";
+
+            scenario2_Risultato[0] = "(Arrivi alle rovine ma ancora non sei al ricuro, vedi un gruppo di Orchi che sta venendo nella tua direzione)";
+            scenario2_Risultato[1] = "(Arrivi alle rovine ma ancora non sei al ricuro, vedi un gruppo di Orchi che sta venendo nella tua direzione)";
+            scenario2_Risultato[2] = "(Arrivi indenne alla prossima destinazione)";
+
+            scenario2_Risultato2[0] = "(Inciampi e perdi una vita)";
+            scenario2_Risultato2[1] = "(Arrivi indenne alla prossima destinazione)";
+            scenario2_Risultato2[2] = "(Entri nella porta e ti avventuri nelle profondita delle rovine, noti in lontanaza un gruppo di figure incapucciate, sembrano star pregando intorno ad un fuoco)" +
+                "\n(decidi di avvicinarti e quando ti notano uno di loro si avvicina per parlarti)" +
+                "\nCultista Anziano:Viaggiatore cosa ti porta nelle rovine di Loth, signora delle ombre?" +
+                "\nTu:Stavo scappando da un qruppo di Orchi e mi sono inbattuto nella porta di questo tempio." +
+                "\nCultista Anziano:Ha, sono felice che tu sia riuscito ad arivare in un luogo sicuro." +
+                "\nPerche non ti unisci a noi nella venerazione di Loth?" +
+                "\nTu:No grazie, ho molto da fare, potresti indicarmi dove si trova l'uscita dal tempio?" +
+                "\n(il Cultista ti mostra l'uscita e prosegui nel tuo viaggio)" +
+                "\n\n AFFETTO + 40";
 
             // scenario 3
-            String[] scenario3 = new String[3];
-            String[] scenario3_Scelte = new String[3];
-            String[] scenario3_Risultato = new String[scenario1_Scelte.Length];
+            String[] scenario3 = new String[12];
+            String[] scenario3_Scelte = new String[4];
+            String[] scenario3_Scelte2 = new String[4];
+            String[] scenario3_Scelte3 = new String[4];
+            String[] scenario3_Scelte4 = new String[4];
+            String[] scenario3_Scelte5 = new String[4];
+            int[] scenario3_RisposteCorrette = { 2, 4, 1, 1, 3 };
+            int[] scenario3_ScelteRisposte = new int[5];
+            String[] scenario3_Risultato = new String[2];
 
-            scenario3[0] = "";
-            scenario3[1] = "";
-            scenario3[2] = "";
 
-            scenario3_Scelte[0] = "";
-            scenario3_Scelte[1] = "";
+            scenario3[0] = "Finalmente esci dalla Valle delle Ombre e arrivai all'entrata dei Rifugi di Cristallo, un insieme di caverne con cristalli luminescenti di variabili sparsi per tutto esso.\n Dentro ci abitano dei Nani da cui dobiamo ottenere degli Ochiali di Cristallo d'Ombra.";
+            scenario3[1] = "Guardia Nanica:Pellegrino, ben arrivato ai Cancelli, cosa ti porta nelle nostre grotte?";
+            scenario3[2] = "Tu:Sono venuto qui per aquisire da voi degli Ochiali di Cristallo d'Ombra, potresti indicarmi dove trovarne un paio?";
+            scenario3[3] = "(Ringrazi la guardia e vai verso la piazza centrale per partecipare all'evento.\n Stranamente nessun altro voleva partecipare quindi sei stato scelto.)";
+            scenario3[4] = "Presentatore:Benvenuti alla centosettantotesima edizione di CHI VUOL'ESSERE NANICO, " +
+                "\nil nostro partecipante di stavolta sarà questo pellegrino, che se dovesse rispondere correttamente a meno di tre domande morirà .Iniziamo?";
+            scenario3[5] = "(Ti senti sotto pressione per la quantità di persone che ti guardano ma annuisci.)";
 
-            scenario3_Risultato[0] = "";
-            scenario3_Risultato[1] = "";
+            scenario3_Scelte[0] = "Presentatore:Qual'è il nome della legendaria spada che fu estratta da una roccia?" +
+                "\nAstraluce";
+            scenario3_Scelte[1] = "Excalibur";
+            scenario3_Scelte[2] = "Stellavvento";
+            scenario3_Scelte[3] = "Kevin";
+
+            scenario3_Scelte2[0] = "Presentatore:Qual'è la creatura che quando muore risorge dalle proprie ceneri?" +
+                "\nGlimmerFay";
+            scenario3_Scelte2[1] = "Chimera";
+            scenario3_Scelte2[2] = "Ippogrifo";
+            scenario3_Scelte2[3] = "Fenice";
+
+            scenario3_Scelte3[0] = "Presentatore:Quale razza magica è famosa per avere le orechie a punta?" +
+                "\nElfi";
+            scenario3_Scelte3[1] = "Asini";
+            scenario3_Scelte3[2] = "Drown";
+            scenario3_Scelte3[3] = "Nani";
+
+            scenario3_Risultato[0] = "Presentatore:Complimenti ha risposto corretamente ad almeno 3 domande, come da stabilito il tuo premio saranno gli Occhiali di Cristallo d'Ombra." +
+            "    /         \\    /         \\\r\n   |           |--|           |\r\n   |           |--|           |     HAI OTTENUTO GLI OCCHIALI !\r\n   |   __      |--|   __      |     \r\n    \\_________/    \\_________/";
+            scenario3_Risultato[1] = "(I nani sono così schifati dalla tua performance che ti hanno condannato ad una morte atroce)";
 
             // scenario 4
-            String[] scenario4 = new String[3];
+            String[] scenario4 = new String[7];
             String[] scenario4_Scelte = new String[3];
             String[] scenario4_Risultato = new String[scenario1_Scelte.Length];
 
-            scenario4[0] = "";
-            scenario4[1] = "";
-            scenario4[2] = "";
+            scenario4[0] = "Avendo ottenuto quello che cercavi procedi verso le Torri del Vento, delle torri di roccia che fanno da casa ai guardiano della Vela di Eolo";
+            scenario4[1] = "(ti avicini all'entrata)";
+            scenario4[2] = "Guardiano1:So il motivo del tuo arrivo, le preparazioni per la prova saranno finite a momenti";
+            scenario4[3] = "(passa alcuni minuti ed un altro guardiano apre la porta)";
+            scenario4[4] = "Guardiano2:Seguimi(il quardiano ti porta su una piattaforma circolare che inprovisamente viene sollevata dal vento portandoti all'ultimo piano della torre)\n Entra nella Sala dell Vento e affronta la prova";
 
-            scenario4_Scelte[0] = "";
-            scenario4_Scelte[1] = "";
 
-            scenario4_Risultato[0] = "";
-            scenario4_Risultato[1] = "";
-
+            scenario4_Risultato[0] = "(Dal nulla appare davanti a te una vela con una decorazione argentata) \n Eolo:Risposta corretta, una barca e pronta per te al porto mettici questa vele e ti portera al tempio.\n(Scendi dalla torre e i guardiani ti portano ad una barca senza vele, gli aggiungi la Vela di Eolo e ti avvii verso l'isola)" +
+            " |\\\r\n    | \\\r\n    |  \\\r\n    |   \\\r\n    |    \\\r\n    |     \\     HAI OTTENUTO LA VELA DI EOLO!\r\n    |      \\    \r\n    |       \\\r\n     --------\r\n        ||\r\n    \\\"\"\"\"\"\"\"\"\"/\r\n     \"\"\"\"\"\"\"\"\"";
+            scenario4_Risultato[1] = "Risposta errata, come punizione per la tua ingenuità dovrai remare fino a l'isola \n (Scendi dalla torre e i guardiani ti portano ad una barca senza vele, non avendo la vela sei costretto a remare fino all'isola";
+            //isolafinale
+            String[] isolafinale = new string[2];
             // scenari bonus
 
             // bonus 1
@@ -368,17 +422,16 @@ namespace RUSH00
             bonus1_Risultato[1] = "(Quando torni in te decidi di non avicinarti)";
 
             // bonus 2
-            String[] bonus2 = new string[3];
-            String[] bonus2_Scelte = new String[2];
-            String[] bonus2_Risultato = new String[bonus1_Scelte.Length];
+            // bonus 2
+            String[] bonus2 = new string[7];
 
-            bonus2[0] = "";
-
-            bonus2_Scelte[0] = "";
-            bonus2_Scelte[1] = "";
-
-            bonus2_Risultato[0] = "";
-            bonus2_Risultato[1] = "";
+            bonus2[0] = "(Entri nella porta e ti avventuri nelle profondita delle rovine, noti in lontanaza un gruppo di figure incapucciate, sembrano star pregando intorno ad un fuoco)";
+            bonus2[1] = "(decidi di avvicinarti e quando ti notano uno di loro si avvicina per parlarti)";
+            bonus2[2] = "Cultista Anziano:Viaggiatore cosa ti porta nelle rovine di Loth, signora delle ombre?";
+            bonus2[3] = "Tu:Stavo scappando da un gruppo di Orchi e mi sono imbattuto nella porta di questo tempio.";
+            bonus2[4] = "Cultista anziano:Ha, sono felice che tu sia riuscito ad arivare in un luogo sicuro.\n Perche non ti unisci a noi nella venerazione di Loth?";
+            bonus2[5] = "Tu:No grazie, ho molto da fare, potresti indicarmi dove si trova l'uscita dal tempio?";
+            bonus2[6] = "(il Cultista ti mostra l'uscita e prosegui nel tuo viaggio)";
 
             // INTRODUZIONE
 
@@ -459,16 +512,34 @@ namespace RUSH00
 
             if (scenari_ScelteInt[scenarioCor] == 1)
             {
-
-                // ottieni 20 affetto
-                incrementaAffetto(ref affetto, 20);
                 stampaTesto(scenario2_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
-                stampaTesto($"\nAffetto + 20");
+            }
+            else if (scenari_ScelteInt[scenarioCor] == 2)
+            {
+                stampaTesto(scenario2_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
             }
             else
             {
-                // Fallimento, hai mentito e vieni cacciato
                 stampaTesto(scenario2_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+            }
+
+            scenarioCor = 2;
+
+            scenari_ScelteInt[scenarioCor] = scelta(scenario2_Scelte2);
+
+            if (scenari_ScelteInt[scenarioCor] == 1)
+            {
+                perdiVita(ref vite);
+                stampaTesto(scenario2_Risultato2[scenari_ScelteInt[scenarioCor] - 1]);
+            }
+            else if (scenari_ScelteInt[scenarioCor] == 2)
+            {
+                stampaTesto(scenario2_Risultato2[scenari_ScelteInt[scenarioCor] - 1]);
+            }
+            else
+            {
+                stampaTesto(scenario2_Risultato2[scenari_ScelteInt[scenarioCor] - 1]);
+                incrementaAffetto(ref affetto, 40);
             }
 
             pausa(inventario, vite, affetto);
@@ -477,7 +548,7 @@ namespace RUSH00
 
             // SCENARIO 3
 
-            scenarioCor = 2;
+            scenarioCor = 3;
 
             stampaScenario(scenario3, false);
 
@@ -485,7 +556,6 @@ namespace RUSH00
 
             if (scenari_ScelteInt[scenarioCor] == 1)
             {
-
                 // ottieni 20 affetto
                 incrementaAffetto(ref affetto, 20);
                 stampaTesto(scenario3_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
@@ -503,7 +573,7 @@ namespace RUSH00
 
             // SCENARIO 4
 
-            scenarioCor = 3;
+            scenarioCor = 4;
 
             stampaScenario(scenario4, false);
 
