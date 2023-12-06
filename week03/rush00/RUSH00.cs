@@ -96,6 +96,7 @@ namespace RUSH00
                     stampaTesto("Input non idoneo");
                 }
             } while (scelta == -1);
+            stampaTesto("");
 
             return scelta;
 
@@ -255,13 +256,15 @@ namespace RUSH00
                 "** Vatti ad allenare, pirla **";
 
             // Missione completata con affetto 60 
-            finali[1] = "Tu:Il nostro contratto termina qui \n" +
-                "Giocondo:si e come da esso stipulato ti riportero a casa tu, addio Briachella \n" +
-               "** Finale Neutrale **";
+            finali[1] = "Tu:Il nostro contratto termina qui" +
+                "\nGiocondo:si e come da esso stipulato ti riportero a casa tu, addio Briachella" +
+                "\n** Finale Neutrale **";
 
             // Missione completata con affetto 100
-            finali[2] = "(Giocondo ti racconta le sue vere intenzioni. Egli vuole uccidere Dioniso.\n In nome della vostra profonda amicizia decidi di aiutarlo ad uccidere il dio. \n Tornate sull'isola di Dioniso e uccidete il dio)" +
-            "** Finale Plot twist **";
+            finali[2] = "(Giocondo ti racconta le sue vere intenzioni. Egli vuole uccidere Dioniso." +
+                "\nIn nome della vostra profonda amicizia decidi di aiutarlo ad uccidere il dio." +
+                "\nTornate sull'isola di Dioniso e uccidete il dio)" +
+            "\n** Finale Plot twist **";
             // vettori per contenere i testi relativi ad ogni scenario
 
             // 4 scenari principali e 1 bonus (possibile)
@@ -277,15 +280,15 @@ namespace RUSH00
             int scenarioCor = 0;
 
             // scenario 1
-            String[] scenario1 = new String[4];
+            String[] scenario1 = new String[5];
             String[] scenario1_Scelte = new String[2];
             String[] scenario1_Risultato = new String[scenario1_Scelte.Length];
 
-
-            scenario1[0] = "Capo elfo:Benvenuto avventuriero, cosa ti porta qui da noi elfi?";
-            scenario1[1] = "Tu:Grande capo elfo, sono giunto qui da voi per chiedere aiuto";
-            scenario1[2] = "Capo elfo: Parla pure avventuriero,cerchero di aiutarti quanto possibile";
-            scenario1[3] = "(pensa: riconosci che per quanto il capo elfo sia ospitale, non sei sicuro di ottenere la veste)\n";
+            scenario1[0] = "Raggiungi la tua prima tappa le Cime Argentee, una catena montuosa famosa per le sue vette ghiacciate e le cascate argentate che scendono lungo i versanti delle montagne,\n qiu risiedono i Gelidi Elfi Argentati, Una tribu di elfi con la pelle Argentea, adattati alla vita nelle terre fredde delle Cime Argentee,\n sono abili nella magia e conoscono tutti i segreti delle Montagne.";
+            scenario1[1] = "Capo elfo:Benvenuto avventuriero, cosa ti porta qui da noi elfi?";
+            scenario1[2] = "Tu:Grande capo elfo, sono giunto qui da voi per chiedere aiuto";
+            scenario1[3] = "Capo elfo: Parla pure avventuriero,cerchero di aiutarti quanto possibile";
+            scenario1[4] = "(pensa: riconosci che per quanto il capo elfo sia ospitale, non sei sicuro di ottenere la veste)\n";
 
             scenario1_Scelte[0] = "Sii diplomatico dicendo la verità ";
             scenario1_Scelte[1] = "Menti";
@@ -321,13 +324,13 @@ namespace RUSH00
             scenario2[2] = "(Senti un rumore, qualcosa si sta avicinando, vedi delle rovine in lontanaza)";
 
 
-            scenario2_Scelte[0] = "1)Cerchi di correre fino alle rovine in lontanaza";
-            scenario2_Scelte[1] = "2)Ti nascondi passando da dietro a vari massi e alberi per arivare alle rovine.";
-            scenario2_Scelte[2] = "3)Usando la tua veste sei praticamente in visibile, ti incamini fino alla fine della valle.";
+            scenario2_Scelte[0] = "Cerchi di correre fino alle rovine in lontanaza";
+            scenario2_Scelte[1] = "Ti nascondi passando da dietro a vari massi e alberi per arivare alle rovine.";
+            scenario2_Scelte[2] = "Usando la tua veste sei praticamente in visibile, ti incamini fino alla fine della valle.";
 
-            scenario2_Scelte2[0] = "1)Continui a correre fino alla fine della Valle.";
-            scenario2_Scelte2[1] = "2)Resta nascosto e aspetta un'opportunita per correre fino alla fine della Valle";
-            scenario2_Scelte2[2] = "3)Entra nella porta";
+            scenario2_Scelte2[0] = "Continui a correre fino alla fine della Valle.";
+            scenario2_Scelte2[1] = "Resta nascosto e aspetta un'opportunita per correre fino alla fine della Valle";
+            scenario2_Scelte2[2] = "Entra nella porta";
 
             scenario2_Risultato[0] = "(Arrivi alle rovine ma ancora non sei al ricuro, vedi un gruppo di Orchi che sta venendo nella tua direzione)";
             scenario2_Risultato[1] = "(Arrivi alle rovine ma ancora non sei al ricuro, vedi un gruppo di Orchi che sta venendo nella tua direzione)";
@@ -346,7 +349,7 @@ namespace RUSH00
                 "\n\n AFFETTO + 40";
 
             // scenario 3
-            String[] scenario3 = new String[12];
+            String[] scenario3 = new String[6];
             String[] scenario3_Scelte = new String[4];
             String[] scenario3_Scelte2 = new String[4];
             String[] scenario3_Scelte3 = new String[4];
@@ -371,39 +374,62 @@ namespace RUSH00
             scenario3_Scelte[2] = "Stellavvento";
             scenario3_Scelte[3] = "Kevin";
 
-            scenario3_Scelte2[0] = "Presentatore:Qual'è la creatura che quando muore risorge dalle proprie ceneri?" +
+
+            scenario3_Scelte2[0] = "Presentatore:Qual è la creatura che quando muore risorge dalle proprie ceneri?" +
                 "\nGlimmerFay";
             scenario3_Scelte2[1] = "Chimera";
             scenario3_Scelte2[2] = "Ippogrifo";
             scenario3_Scelte2[3] = "Fenice";
 
-            scenario3_Scelte3[0] = "Presentatore:Quale razza magica è famosa per avere le orechie a punta?" +
+            scenario3_Scelte3[0] = "Presentatore:Quale razza magica è famosa per avere le orecchie a punta?" +
                 "\nElfi";
             scenario3_Scelte3[1] = "Asini";
             scenario3_Scelte3[2] = "Drown";
             scenario3_Scelte3[3] = "Nani";
 
-            scenario3_Risultato[0] = "Presentatore:Complimenti ha risposto corretamente ad almeno 3 domande, come da stabilito il tuo premio saranno gli Occhiali di Cristallo d'Ombra." +
-            "    /         \\    /         \\\r\n   |           |--|           |\r\n   |           |--|           |     HAI OTTENUTO GLI OCCHIALI !\r\n   |   __      |--|   __      |     \r\n    \\_________/    \\_________/";
+            scenario3_Scelte4[0] = "Presentatore:Quale dea e conosciuta come la Signora della Notte?" +
+                "\nLoth";
+            scenario3_Scelte4[1] = "Dioniso";
+            scenario3_Scelte4[2] = "Shar";
+            scenario3_Scelte4[3] = "Selun";
+            scenario3_Scelte5[0] = "Presentatore:In cosa sono esperti i Nani" +
+            "\n Arceria";
+            scenario3_Scelte5[1] = "Pulizie";
+            scenario3_Scelte5[2] = "Forgia";
+            scenario3_Scelte5[3] = "Mineralogia";
+
+            scenario3_Risultato[0] = "Presentatore:Complimenti ha risposto correttamente ad almeno 3 domande, come da stabilito il tuo premio saranno gli Occhiali di Cristallo d'Ombra." +
+            "\n     _________      _________\r\n    /         \\    /         \\\r\n   |           |--|           |\r\n   |           |--|           |     HAI OTTENUTO GLI OCCHIALI !\r\n   |   _       |--|   _       |     \r\n    \\_________/    \\_________/";
             scenario3_Risultato[1] = "(I nani sono così schifati dalla tua performance che ti hanno condannato ad una morte atroce)";
 
             // scenario 4
-            String[] scenario4 = new String[7];
+            String[] scenario4 = new String[5];
             String[] scenario4_Scelte = new String[3];
-            String[] scenario4_Risultato = new String[scenario1_Scelte.Length];
-
+            String[] scenario4_Risultato = new String[2];
+            String[] scenario4_risposte = { "serpente", "luna", "enigma" };
             scenario4[0] = "Avendo ottenuto quello che cercavi procedi verso le Torri del Vento, delle torri di roccia che fanno da casa ai guardiano della Vela di Eolo";
             scenario4[1] = "(ti avicini all'entrata)";
             scenario4[2] = "Guardiano1:So il motivo del tuo arrivo, le preparazioni per la prova saranno finite a momenti";
             scenario4[3] = "(passa alcuni minuti ed un altro guardiano apre la porta)";
             scenario4[4] = "Guardiano2:Seguimi(il quardiano ti porta su una piattaforma circolare che inprovisamente viene sollevata dal vento portandoti all'ultimo piano della torre)\n Entra nella Sala dell Vento e affronta la prova";
-
+            scenario4_Scelte[0] = "Sono lungo quanto un fiume, ma non sono d'acqua,\nnon ho occhi, ma posso vedere il mondo, \nmi muovo senza gambe, ma vado lontano, \ne se mi giri, divento invisibile all'istante.\nChi sono?";
+            scenario4_Scelte[1] = "Nella notte sono illuminato, \nsenza fiamma, sono scaldato. \nNon ho corpo, ma ho un'ombra, \ne seguo sempre la tua traccia. \n\nChi sono?";
+            scenario4_Scelte[2] = "Ho occhi che non vedono, \norecchie che non sentono, \ne una lingua che non parla. \nSono antica come il tempo, \nma sempre nuova.\nChi sono?";
 
             scenario4_Risultato[0] = "(Dal nulla appare davanti a te una vela con una decorazione argentata) \n Eolo:Risposta corretta, una barca e pronta per te al porto mettici questa vele e ti portera al tempio.\n(Scendi dalla torre e i guardiani ti portano ad una barca senza vele, gli aggiungi la Vela di Eolo e ti avvii verso l'isola)" +
-            " |\\\r\n    | \\\r\n    |  \\\r\n    |   \\\r\n    |    \\\r\n    |     \\     HAI OTTENUTO LA VELA DI EOLO!\r\n    |      \\    \r\n    |       \\\r\n     --------\r\n        ||\r\n    \\\"\"\"\"\"\"\"\"\"/\r\n     \"\"\"\"\"\"\"\"\"";
-            scenario4_Risultato[1] = "Risposta errata, come punizione per la tua ingenuità dovrai remare fino a l'isola \n (Scendi dalla torre e i guardiani ti portano ad una barca senza vele, non avendo la vela sei costretto a remare fino all'isola";
+            "\n    |\\\n    | \\\r\n    |  \\\r\n    |   \\\r\n    |    \\\r\n    |     \\     HAI OTTENUTO LA VELA DI EOLO!\r\n    |      \\    \r\n    |       \\\r\n     --------\r\n        ||\r\n    \\\"\"\"\"\"\"\"\"\"/\r\n     \"\"\"\"\"\"\"\"\"";
+            scenario4_Risultato[1] = "Risposta errata, come punizione per la tua ingenuità dovrai remare fino a l'isola \n (Scendi dalla torre e i guardiani ti portano ad una barca senza vele, non avendo la vela sei costretto a remare fino all'isola " +
+                "\n perdi due vite";
             //isolafinale
-            String[] isolafinale = new string[2];
+            String[] isolafinale = new string[5];
+            isolafinale[0] = "Arrivi finalmente all'isola di Luminara, un'isola magica circondata da una luce perpetua, questa luce sembra provenire dall torre piu alta del tempio \n situato nel centro dell'isola";
+            isolafinale[1] = "Giocondo:Ci siamo Briachella finalmente siamo arrivati sbrigriamoci ad entrare.";
+            isolafinale[2] = "\n(Giocondo corre dentro al tempio, cerchi di stargli dietro fino a che non arrivate nella sala principale)";
+            isolafinale[3] = "\n(Noti la spada sulle mani di una statua)";
+            isolafinale[4] = "\nGiocondo:Finalmente C'è l'ho fatta!! Dopo cosi tanti anni." +
+            "\n      ^\n     / \\    \n    /_ _\\\n    | | |\n    | | |\n    | | |   HAI OTTENUTO UNA SPADA!\n    | | |\n    | | |\n     \\|/\n    =====\n     |||\n    \"\"\"\"\"\n" +
+            "Fine?";
+
             // scenari bonus
 
             // bonus 1
@@ -552,83 +578,170 @@ namespace RUSH00
 
             stampaScenario(scenario3, false);
 
-            scenari_ScelteInt[scenarioCor] = scelta(scenario3_Scelte);
+            // QUIZ
 
-            if (scenari_ScelteInt[scenarioCor] == 1)
+            scenario3_ScelteRisposte[0] = scelta(scenario3_Scelte);
+            scenario3_ScelteRisposte[1] = scelta(scenario3_Scelte2);
+            scenario3_ScelteRisposte[2] = scelta(scenario3_Scelte3);
+            scenario3_ScelteRisposte[3] = scelta(scenario3_Scelte4);
+            scenario3_ScelteRisposte[4] = scelta(scenario3_Scelte5);
+
+            int risposteCorrette = 0;
+            for (int i = 0; i < scenario3_ScelteRisposte.Length; i++)
             {
-                // ottieni 20 affetto
-                incrementaAffetto(ref affetto, 20);
-                stampaTesto(scenario3_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
-                stampaTesto($"\nAffetto + 20");
+                if (scenario3_ScelteRisposte[i] == scenario3_RisposteCorrette[i])
+                {
+                    risposteCorrette++;
+                }
+            }
+
+            // setto scenari_ScelteInt
+
+            if (risposteCorrette > 2)
+            {
+                scenari_ScelteInt[scenarioCor] = 1;
             }
             else
             {
-                // Fallimento, hai mentito e vieni cacciato
-                stampaTesto(scenario3_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+                scenari_ScelteInt[scenarioCor] = 2;
             }
-
-            pausa(inventario, vite, affetto);
-
-            spezzaTesto();
-
-            // SCENARIO 4
-
-            scenarioCor = 4;
-
-            stampaScenario(scenario4, false);
-
-            scenari_ScelteInt[scenarioCor] = scelta(scenario4_Scelte);
 
             if (scenari_ScelteInt[scenarioCor] == 1)
             {
-
-                // ottieni 20 affetto
+                // Ottieni gli occhiali
                 incrementaAffetto(ref affetto, 20);
-                stampaTesto(scenario4_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
-                stampaTesto($"\nAffetto + 20");
+                aggiungiOggetto(oggetti.OCCHIALI, ref inventario);
+                stampaTesto(scenario3_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
             }
             else
             {
-                // Fallimento, hai mentito e vieni cacciato
-                stampaTesto(scenario4_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
-            }
-
-            pausa(inventario, vite, affetto);
-
-            spezzaTesto();
-
-            // FINALE (in base ad affetto)
-
-            switch (affetto)
-            {
-                case 60:
-                    stampaTesto(finali[1]);
-                    break;
-                case 100:
-                    stampaTesto(finali[2]);
-                    break;
-            }
-
-            // RIASSUNTO
-
-            // Scenario 1
-            stampaTesto("");
-            if (scenari_ScelteInt[0] == 1)
-            {
+                stampaTesto(scenario3_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+                // perdi tutte le vite
+                do
+                {
+                    if (!perdiVita(ref vite))
+                    {
+                        stampaTesto(finali[0]);
+                        break;
+                    }
+                } while (true);
                 stampaTesto("");
             }
-            else
+
+            if (scenari_ScelteInt[scenarioCor] == 1)
             {
+                pausa(inventario, vite, affetto);
+
+                spezzaTesto();
+
+                // SCENARIO 4
+
+                scenarioCor = 4;
+
+                stampaScenario(scenario4, false);
+
+                String risposta = "";
+                bool rispostaCorretta = false;
+
+                // indovinello casuale
+                switch (ra.Next(1, 3))
+                {
+                    case 1:
+                        stampaTesto(scenario4_Scelte[0]);
+                        risposta = Console.ReadLine();
+                        if (risposta.Equals(scenario4_risposte[0])) rispostaCorretta = true;
+                        break;
+                    case 2:
+                        stampaTesto(scenario4_Scelte[1]);
+                        risposta = Console.ReadLine();
+                        if (risposta.Equals(scenario4_risposte[1])) rispostaCorretta = true;
+                        break;
+                    case 3:
+                        stampaTesto(scenario4_Scelte[2]);
+                        risposta = Console.ReadLine();
+                        if (risposta.Equals(scenario4_risposte[2])) rispostaCorretta = true;
+                        break;
+                }
+
+                if (rispostaCorretta)
+                {
+                    scenari_ScelteInt[scenarioCor] = 1;
+                }
+                else
+                {
+                    scenari_ScelteInt[scenarioCor] = 2;
+                }
+
+
+                if (scenari_ScelteInt[scenarioCor] == 1)
+                {
+                    incrementaAffetto(ref affetto, affetto);
+                    aggiungiOggetto(oggetti.VELA, ref inventario);
+                    stampaTesto(scenario4_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+                }
+                else
+                {
+                    perdiVita(ref vite);
+                    perdiVita(ref vite);
+                    // Fallimento, hai mentito e vieni cacciato
+                    stampaTesto(scenario4_Risultato[scenari_ScelteInt[scenarioCor] - 1]);
+                }
+
+                if (vite == 0)
+                {
+                    // Sei morto
+                    stampaTesto(finali[0]);
+                }
+                else
+                {
+                    pausa(inventario, vite, affetto);
+
+                    spezzaTesto();
+
+                    // ISOLA FINALE
+                    stampaScenario(isolafinale, true);
+                    aggiungiOggetto(oggetti.ARMA, ref inventario);
+
+                    pausa(inventario, vite, affetto);
+
+                    spezzaTesto();
+
+                    // FINALE (in base ad affetto)
+
+                    if (affetto < 100)
+                    {
+                        stampaTesto(finali[1]);
+                    }
+                    else
+                    {
+                        stampaTesto(finali[2]);
+                    }
+
+                    // RIASSUNTO
+
+                    // Scenario 1
+                    stampaTesto("");
+                    if (scenari_ScelteInt[0] == 1)
+                    {
+                        stampaTesto("");
+                    }
+                    else
+                    {
+
+                    }
+
+
+
+                    // BONUS 2
+                }
+
+
+
 
             }
-
-
-
-            // BONUS 2
 
 
 
         }
     }
 }
-
