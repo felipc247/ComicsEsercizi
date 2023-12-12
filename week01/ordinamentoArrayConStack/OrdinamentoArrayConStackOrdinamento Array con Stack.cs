@@ -9,7 +9,7 @@ namespace Ordinamento_Array_con_Stack
 {
     internal class Program
     {
-        static void printVet(List<int> vet, int rowLength)
+        static void printList(List<int> vet, int rowLength)
         {
             bool ciclo = false;
             for (int i = 0; i < vet.Count; i++)
@@ -64,15 +64,22 @@ namespace Ordinamento_Array_con_Stack
             intList.InsertRange(0, supportList);
         }
 
+        // scambia il primo elemento di uno stack con il primo elemento dell'altro
+
         static void swap(ref List<int> intList, ref List<int> supportList)
         {
+            // salvo il valore in cima di intList
             int temp = intList[intList.Count - 1];
 
+            // rimuovo primo valore e aggiungo primo valore di supportList
             intList.RemoveAt(intList.Count - 1);
             intList.Add(supportList[supportList.Count - 1]);
+            // rimuovo primo valore e aggiungo primo valore di intList (temp)
             supportList.RemoveAt(supportList.Count - 1);
             supportList.Add(temp);
         }
+
+        // sposta il primo elemento di uno stack in cima all'altro
 
         static void push(ref List<int> intList, ref List<int> supportList, int where)
         {
@@ -97,6 +104,70 @@ namespace Ordinamento_Array_con_Stack
                     Console.WriteLine("Push in supportList eseguito");
                 }
 
+            }
+
+        }
+
+        // algoritmo di ordinamento per array di piccole dimensioni
+        static void insertionSort(ref List<int> intList, ref List<int> supportList)
+        {
+            int n = intList.Count;
+
+            // porto l'ultimo elemento in cima allo stack (.Count - 1)
+            rotateReverse(ref intList, 1);
+
+            push(ref intList, ref supportList, 1);
+
+            // per ogni elemento rimanente della lista trovo la posizione corretta nella stessa
+            for (int i = 0; i < intList.Count - 1;)
+            {
+                // prendo l'ultimo elemento di intList e trovo la posizione corretta in supportList
+                for (int j = 0; j < supportList.Count; j++)
+                {
+                    if (intList[i] < intList[j])
+                    {
+                        // IL NUMERO È MINORE 
+                        // preparo lo stack di supporto per accogliere il nuovo numero
+                        // shifto a dx di un numero di posizioni pari ai numeri > del numero da pushare
+                        // cioè .Count - numeri minori del numero (j + 1)
+                        int shift = supportList.Count - (j - 1);
+                        for (int k = 0; k < shift; k++)
+                        {
+                            rotate(ref supportList, 1);
+                        }
+                        // ultimo elemento a primo, così posso pusharlo nell'altro stack
+                        rotateReverse(ref intList, 1);
+                        push(ref intList, ref supportList, 1);
+                        // shifto a sx dello stesso numero di posizioni
+                        for (int k = 0; k < shift; k++)
+                        {
+                            rotate(ref supportList, 1);
+                        }
+                        // inserimento completato
+
+                    }
+                    else
+                    {
+                        // IL NUMERO È MAGGIORE
+                        // preparo lo stack di supporto per accogliere il nuovo numero
+                        // shifto a dx di un numero di posizioni pari ai numeri > del numero da pushare
+                        // cioè .Count - numeri minori del numero (j + 1)
+                        int shift = supportList.Count - (j - 1);
+                        for (int k = 0; k < shift; k++)
+                        {
+                            rotate(ref supportList, 1);
+                        }
+                        // ultimo elemento a primo, così posso pusharlo nell'altro stack
+                        rotateReverse(ref intList, 1);
+                        push(ref intList, ref supportList, 1);
+                        // shifto a sx dello stesso numero di posizioni
+                        for (int k = 0; k < shift; k++)
+                        {
+                            rotate(ref supportList, 1);
+                        }
+                        // inserimento completato
+                    }
+                }
             }
 
         }
