@@ -124,13 +124,13 @@ namespace Ordinamento_Array_con_Stack
                 // prendo l'ultimo elemento di intList e trovo la posizione corretta in supportList
                 for (int j = 0; j < supportList.Count; j++)
                 {
-                    if (intList[i] < intList[j])
+                    if (intList[i] < supportList[j])
                     {
                         // IL NUMERO È MINORE 
                         // preparo lo stack di supporto per accogliere il nuovo numero
                         // shifto a dx di un numero di posizioni pari ai numeri > del numero da pushare
                         // cioè .Count - numeri minori del numero (j + 1)
-                        int shift = supportList.Count - (j - 1);
+                        int shift = supportList.Count - j;
                         for (int k = 0; k < shift; k++)
                         {
                             rotate(ref supportList, 1);
@@ -138,35 +138,32 @@ namespace Ordinamento_Array_con_Stack
                         // ultimo elemento a primo, così posso pusharlo nell'altro stack
                         rotateReverse(ref intList, 1);
                         push(ref intList, ref supportList, 1);
-                        // shifto a sx dello stesso numero di posizioni
-                        for (int k = 0; k < shift; k++)
+                        if (j == 0)
                         {
+                            // intList[i] è minore del numero più piccolo di supportList
+                            // perciò shiftare a sx non funziona, in quanto non ho numeri sia minori che maggiori dello stesso
                             rotate(ref supportList, 1);
                         }
+                        else
+                        {
+                            // shifto a sx dello stesso numero di posizioni
+                            for (int k = 0; k < shift; k++)
+                            {
+                                rotate(ref supportList, 1);
+                            }
+                        }
                         // inserimento completato
+                        break;
 
                     }
-                    else
+                    else if (j == supportList.Count - 1)
                     {
-                        // IL NUMERO È MAGGIORE
-                        // preparo lo stack di supporto per accogliere il nuovo numero
-                        // shifto a dx di un numero di posizioni pari ai numeri > del numero da pushare
-                        // cioè .Count - numeri minori del numero (j + 1)
-                        int shift = supportList.Count - (j - 1);
-                        for (int k = 0; k < shift; k++)
-                        {
-                            rotate(ref supportList, 1);
-                        }
-                        // ultimo elemento a primo, così posso pusharlo nell'altro stack
-                        rotateReverse(ref intList, 1);
+                        // neanche supportList[supportList.Count - 1] è maggiore di intList[i]
+                        // perciò va semplicemente in cima allo stack
                         push(ref intList, ref supportList, 1);
-                        // shifto a sx dello stesso numero di posizioni
-                        for (int k = 0; k < shift; k++)
-                        {
-                            rotate(ref supportList, 1);
-                        }
-                        // inserimento completato
+                        break;
                     }
+
                 }
             }
 
@@ -231,6 +228,20 @@ namespace Ordinamento_Array_con_Stack
                     }
                 }
             }
+
+            Console.WriteLine("vet100");
+            printList(vet100, 10);
+
+            Console.WriteLine("vet100Sup");
+            printList(vet100Sup, 10);
+
+            insertionSort(ref vet100, ref vet100Sup);
+
+            Console.WriteLine("vet100");
+            printList(vet100, 10);
+
+            Console.WriteLine("vet100Sup");
+            printList(vet100Sup, 10);
 
 
 
