@@ -41,7 +41,7 @@ namespace Archivio_Videogiochi
             get { return genere; }
             set
             {
-                if (value == null)
+                if (value.Equals(""))
                 {
                     throw new StringaVuotaException();
                 }
