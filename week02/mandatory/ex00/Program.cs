@@ -168,11 +168,11 @@ namespace Archivio_Videogiochi
 
         static void Main(string[] args)
         {
-            //archivio.AggiungiVideogioco(new Videogioco("SpyAnya7", "Spy wars", 10));
-            //archivio.AggiungiVideogioco(new Videogioco("SpyAnya13", "Spy peanuts", 9));
-            //archivio.AggiungiVideogioco(new Videogioco("SpyAnya3", "Spy peanuts", 6));
-            //archivio.AggiungiVideogioco(new Videogioco("SpyAnya17", "Spy wars", 7));
-            //archivio.AggiungiVideogioco(new Videogioco("SpyAnya21", "Spy mission", 3));
+            archivio.AggiungiVideogioco(new Videogioco("SpyAnya7", "Spy wars", 10));
+            archivio.AggiungiVideogioco(new Videogioco("SpyAnya13", "Spy peanuts", 9));
+            archivio.AggiungiVideogioco(new Videogioco("SpyAnya3", "Spy peanuts", 6));
+            archivio.AggiungiVideogioco(new Videogioco("SpyAnya17", "Spy wars", 7));
+            archivio.AggiungiVideogioco(new Videogioco("SpyAnya21", "Spy mission", 3));
 
             int scelta;
 
