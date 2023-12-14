@@ -27,7 +27,8 @@ namespace Ricerca_binaria
             // riempimento casuale crescente vet
             Random ra = new Random();
 
-            key = ra.Next(0, 10);
+            Console.WriteLine("Inserisci un numero intero non negativo");
+            key = int.Parse(Console.ReadLine());
 
             for (int j = 0; j < ints.Length; j++)
             {
