@@ -110,10 +110,10 @@ namespace Archivio_Videogiochi
             int scelta = -1;
             try
             {
-                if (scelta < 1 || scelta > 3) throw new NumeroNonValidoException();
                 printn("");
                 if (int.TryParse(Console.ReadLine(), out scelta))
                 {
+                    if (scelta < 1 || scelta > 3) throw new NumeroNonValidoException();                    
                     printn("");
                     switch (scelta)
                     {
