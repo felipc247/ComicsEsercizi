@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +17,8 @@ namespace Ricerca_Avanzata_Dictionary
             catalogo.Add(nome, piattaforme);
         }
 
-        public bool CheckGiocoEsistente(String nome) {
+        public bool CheckGiocoEsistente(String nome)
+        {
             return catalogo.ContainsKey(nome);
         }
 
@@ -73,9 +74,9 @@ namespace Ricerca_Avanzata_Dictionary
                 sommaPiattaforme += item.Value.Count;
             }
 
-            double mediaPiattaforme = sommaPiattaforme / catalogo.Count;
+            double mediaPiattaforme = (double) sommaPiattaforme / catalogo.Count;
 
-            CC.DarkYellowFr($"Ogni gioco è mediamente disponibile in {mediaPiattaforme} piattaforme\n");
+            CC.DarkYellowFr($"Ogni gioco è mediamente disponibile in {mediaPiattaforme.ToString("N2")} piattaforme\n");
         }
     }
 }
