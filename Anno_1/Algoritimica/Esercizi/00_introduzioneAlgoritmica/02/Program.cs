@@ -17,7 +17,7 @@ namespace Algoritmica_00_2
                 // j++
                 // e continuo il confronto
                 // questo crea un subarray che contiene gli elementi
-                // più grandi già ordinati
+                // piÃ¹ grandi giÃ  ordinati
                 for (int j = 0; j < vet.Length - i - 1; j++)
                 {
                     if (vet[j] > vet[j + 1])
@@ -36,8 +36,8 @@ namespace Algoritmica_00_2
             {
                 // creo un subarray di elementi ordinati
                 // sposto l'elemento (j + 1) key al posto di j
-                // se minore, altrimenti esco perchè l'elemento
-                // è nella posizione corretta
+                // se minore, altrimenti esco perchÃ¨ l'elemento
+                // Ã¨ nella posizione corretta
                 // se minore continuo a controllare la key
                 // con l'elemento che la precede
                 for (int j = i; j >= 0; j--)
@@ -62,8 +62,8 @@ namespace Algoritmica_00_2
             {
                 // creo un subarray di elementi ordinati
                 // sposto l'elemento (j + 1) key al posto di j
-                // se minore, altrimenti esco perchè l'elemento
-                // è nella posizione corretta
+                // se minore, altrimenti esco perchÃ¨ l'elemento
+                // Ã¨ nella posizione corretta
                 // se minore continuo a controllare la key
                 // con l'elemento che la precede
                 for (int j = i; j >= 0; j--)
@@ -85,6 +85,9 @@ namespace Algoritmica_00_2
 
         static List<int> Merge_Sort(List<int> vet)
         {
+													// divido il vettore in
+            // e continuo fino a che la dimensione del sottovettore Ã¨ < 3
+            // merge dei sottovettore ordinati e li ordino
             if (vet.Count > 2)
             {
                 List<int> thread1 = Merge_Sort(vet.GetRange(0, vet.Count / 2));
