@@ -162,8 +162,9 @@ namespace Algoritmica_00_2
 
                 }
             }
-            vet[sx + minori_Pivot] = pivot;
 
+            // inserisco Pivot nella posizione corretta
+            vet[sx + minori_Pivot] = pivot;
 
             // se minori < 2, o non ho il vet di SX, o la sua dimensione è 1, perciò è già ordinato
             if (minori_Pivot > 0)
@@ -174,7 +175,6 @@ namespace Algoritmica_00_2
                 {
                     vet[i] = vet_spt[j++];
                 }
-                // inserisco Pivot nella posizione corretta
                 // passo vet SX
                 Quick_Sort(vet, sx, sx + minori_Pivot - 1);
             }
@@ -188,7 +188,6 @@ namespace Algoritmica_00_2
                 {
                     vet[i] = vet_spt[minori_Pivot + j++];
                 }
-                // inserisco Pivot nella posizione corretta
                 // passo vet DX
                 Quick_Sort(vet, sx + minori_Pivot + 1, sx + minori_Pivot + 1 + maggiori - 1);
             }
