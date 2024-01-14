@@ -166,7 +166,7 @@ namespace Algoritmica_00_2
             // inserisco Pivot nella posizione corretta
             vet[sx + minori_Pivot] = pivot;
 
-            // se minori < 2, o non ho il vet di SX, o la sua dimensione è 1, perciò è già ordinato
+            // se minori == 1, non devo ordinare
             if (minori_Pivot > 0)
             {
                 // piazzo i < di Pivot prima di esso
@@ -179,7 +179,7 @@ namespace Algoritmica_00_2
                 Quick_Sort(vet, sx, sx + minori_Pivot - 1);
             }
 
-            // maggiori == 1, allora è gi
+            // maggiori == 1, non devo ordinare
             if (maggiori > 0)
             {
                 // piazzo i >= pivot dopo di esso
