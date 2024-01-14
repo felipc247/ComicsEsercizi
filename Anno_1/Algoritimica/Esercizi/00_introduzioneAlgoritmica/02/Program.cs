@@ -116,7 +116,7 @@ namespace Algoritmica_00_2
 
         static void Quick_Sort(int[] vet, int sx, int dx)
         {
-            // Si sceglie un pivot vet[0]
+            // Si sceglie un pivot vet[sx], primo elemento dell'array o del subarray
             // si controllano tutti gli altri elementi
             // trovo quelli < e quelli >= a pivot
             // inserisco pivot alla posizione corretta
@@ -125,13 +125,24 @@ namespace Algoritmica_00_2
 
             if (!vet.Any() || vet.Length < 2) return;
 
-            // Array di supporto per salvare i dati senza modificare l'array originale
-            int[] vet_spt = new int[dx - sx - 1];
+            int vet_length = 0;
+            if (dx - sx == vet.Length)
+            {
+                vet_length = vet.Length - 1;
+                dx--;
+            }
+            else
+            {
+                vet_length = dx - sx;
+            }
+            int[] vet_spt = new int[vet_length];
 
+            // Assegno Pivot
             int pivot = vet[sx];
-            int minori_Pivot = 0;
 
-            for (int i = sx + 1; i < dx; i++)
+            // Trovo i minori di Pivot
+            int minori_Pivot = 0;
+            for (int i = dx; i != sx; i--)
             {
                 if (vet[i] < pivot)
                 {
@@ -140,41 +151,46 @@ namespace Algoritmica_00_2
                 }
             }
 
+            // Trovo i  maggiori di Pivot
             int maggiori = 0;
-            for (int i = sx + 1; i < dx; i++)
+            for (int i = dx; i != sx; i--)
             {
                 if (vet[i] >= pivot)
                 {
-                    maggiori++;
                     vet_spt[minori_Pivot + maggiori] = vet[i];
+                    maggiori++;
+
                 }
             }
-
-            // inserisco Pivot nella posizione corretta
             vet[sx + minori_Pivot] = pivot;
 
-            // se Pivot numero minore, non ho un vet SX
-            if (minori_Pivot != 0)
+
+            // se minori < 2, o non ho il vet di SX, o la sua dimensione è 1, perciò è già ordinato
+            if (minori_Pivot > 0)
             {
+                // piazzo i < di Pivot prima di esso
                 int j = 0;
-                for (int i = sx; i < minori_Pivot; i++)
+                for (int i = sx; i < sx + minori_Pivot; i++)
                 {
                     vet[i] = vet_spt[j++];
                 }
+                // inserisco Pivot nella posizione corretta
                 // passo vet SX
-                Quick_Sort(vet, sx, minori_Pivot);
+                Quick_Sort(vet, sx, sx + minori_Pivot - 1);
             }
 
-            // se Pivot numero maggiore, non ho un vet DX
-            if (minori_Pivot != vet.Length - 1)
+            // maggiori == 1, allora è gi
+            if (maggiori > 0)
             {
+                // piazzo i >= pivot dopo di esso
                 int j = 0;
-                for (int i = sx + minori_Pivot + 1; i < dx; i++)
+                for (int i = sx + minori_Pivot + 1; i < sx + minori_Pivot + maggiori + 1; i++)
                 {
                     vet[i] = vet_spt[minori_Pivot + j++];
                 }
+                // inserisco Pivot nella posizione corretta
                 // passo vet DX
-                Quick_Sort(vet, minori_Pivot + 1, vet.Length);
+                Quick_Sort(vet, sx + minori_Pivot + 1, sx + minori_Pivot + 1 + maggiori - 1);
             }
 
         }
@@ -189,15 +205,17 @@ namespace Algoritmica_00_2
 
         static void Main(string[] args)
         {
-            int[] vet = new int[10];
+            int[] vet = new int[100];
             Random random = new Random();
 
             for (int i = 0; i < vet.Length; i++)
             {
-                vet[i] = random.Next(1, 15); // Assegna un numero casuale compreso tra 1 e 100
+                vet[i] = random.Next(1, 100); // Assegna un numero casuale compreso tra 1 e 100
             }
             DateTime start = DateTime.Now;
             Quick_Sort(vet, 0, vet.Length);
+            //Insertion_Sort(vet);
+            //Bubble_Sort(vet);
             //vet = Merge_Sort(vet.ToList()).ToArray();
             DateTime end = DateTime.Now;
             Print_Int_Vet(vet);
