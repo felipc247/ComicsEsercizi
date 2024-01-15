@@ -64,31 +64,35 @@ namespace Albero_espressione
                 return token == "+" || token == "-" || token == "*" || token == "/";
             }
 
-            private bool Num(string token)
+            public double Calculate()
             {
-                int i = 0;
-                return int.TryParse(token, out i);
+                Stack<NodoEspressione> stack = new Stack<NodoEspressione>();
+                return Calculate_Rec(Radice, stack);
             }
 
-            private int Calculate(NodoEspressione nodo, Stack<NodoEspressione> stack)
+            private double Calculate_Rec(NodoEspressione nodo, Stack<NodoEspressione> stack)
             {
                 if (nodo == null) return 0;
 
+                // vado in fondo all'albero per trovare i primi 2 numeri da cui iniziare
+
                 if (nodo.Sinistro != null)
                 {
-                    Calculate(nodo.Sinistro, stack);
+                    Calculate_Rec(nodo.Sinistro, stack);
                 }
 
                 if (nodo.Destro != null)
                 {
-                    Calculate(nodo.Destro, stack);
+                    Calculate_Rec(nodo.Destro, stack);
                 }
 
+                // Quando trovo un operatore Pop dei 2 valori all'interno dello stack
+                // e pusho il risultato dell'operazione nello stack
                 if (Operatore(nodo.Valore))
                 {
-                    int num1, num2;
-                    int.TryParse(stack.Pop().Valore, out num1);
-                    int.TryParse(stack.Pop().Valore, out num2);
+                    double num1, num2;
+                    double.TryParse(stack.Pop().Valore, out num1);
+                    double.TryParse(stack.Pop().Valore, out num2);
                     switch (nodo.Valore)
                     {
                         case "/":
@@ -107,8 +111,11 @@ namespace Albero_espressione
                 }
                 else
                 {
+                    // Se non è un operatore, si tratta di un numero, perciò pusho il nodo
                     stack.Push(nodo);
                 }
+
+                return double.Parse(stack.Peek().Valore);
 
 
             }
@@ -117,9 +124,10 @@ namespace Albero_espressione
 
         static void Main(string[] args)
         {
-            String[] op = { "5", "3", "+", "4", "*", "2", "/", "6", "/" };
+            String[] op = { "5", "3", "+", "4", "*", "4", "/"};
             AlberoEspressione alberoEspressione = new AlberoEspressione();
             alberoEspressione.CostruisciAlbero(op);
+            Console.WriteLine(alberoEspressione.Calculate());
             int i = 0;
         }
     }
