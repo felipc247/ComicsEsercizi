@@ -48,44 +48,40 @@ namespace Alberi_esempio
 
             // ricerca
 
-            public void Ricerca(int value) {
-                if (Ricerca_Rec(Radice, value))
-                {
-                    Console.WriteLine("Found");
-                }
-                else {
-                    Console.WriteLine("NOT Found");
-                }
+            public NodoAlberoBinario Ricerca(int value)
+            {
+                return Ricerca_Rec(Radice, value);
             }
 
-            private bool Ricerca_Rec(NodoAlberoBinario nodo, int value) {
-                bool found = false;
+            private NodoAlberoBinario Ricerca_Rec(NodoAlberoBinario nodo, int value)
+            {
+                NodoAlberoBinario nodo_b = null;
                 // Albero vuoto
-                if (nodo == null) { return found; }
-                // Valore trovato, return true
-                if (nodo.Valore == value) { found = true; return found; }
+                if (nodo == null) { return nodo_b; }
+                // Valore trovato, return Nodo
+                if (nodo.Valore == value) { return nodo; }
                 // Controllo se devo cercare nel ramo SX o ramo DX
                 if (value < nodo.Valore)
                 {
                     // Se figlio SX esiste posso cercare tra i suoi figli
                     if (nodo.Sinistro != null)
                     {
-                        found = Ricerca_Rec(nodo.Sinistro, value);
-                        // Se trovato return true
-                        if (found) return found;
-                    }                   
+                        nodo_b = Ricerca_Rec(nodo.Sinistro, value);
+                        // Se trovato return Nodo
+                        if (nodo != null) return nodo_b;
+                    }
                 }
                 else if (value > Radice.Valore)
                 {
                     // Se figlio DX esiste posso cercare tra i suoi figli
                     if (nodo.Destro != null)
                     {
-                        found = Ricerca_Rec(nodo.Destro, value);
-                        // Se trovato return true
-                        if (found) return found;
+                        nodo_b = Ricerca_Rec(nodo.Destro, value);
+                        // Se trovato return Nodo
+                        if (nodo != null) return nodo_b;
                     }
                 }
-                return found;
+                return nodo_b;
             }
 
             // stampa in-order
@@ -157,7 +153,15 @@ namespace Alberi_esempio
             // Stampa
             abr.Print_Tree();
             // Ricerca
-            abr.Ricerca(564);
+            if (abr.Ricerca(52) != null)
+            {
+                Console.WriteLine("FOUND");
+            }
+            else
+            {
+                Console.WriteLine("NOT FOUND");
+            }
+
         }
     }
 }
