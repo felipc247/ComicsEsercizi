@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleHashTable
+namespace HashTable_Separate_chaining
 {
     internal class Program
     {
