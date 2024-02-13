@@ -104,6 +104,7 @@ namespace PmergeMe
                     if (j == ordered_length)
                     {
                         // n1 è il numero più grande nel subarray ordinato
+                        // uso il valore ordered_length + 1, sapendo che index non può raggiungere mai questo valore
                         index = ordered_length + 1;
                     }
                     else
