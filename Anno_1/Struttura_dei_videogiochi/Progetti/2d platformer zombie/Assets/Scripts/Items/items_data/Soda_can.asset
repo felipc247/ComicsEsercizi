@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288b7b8cbd471a244bf46527db5e1c0f, type: 3}
+  m_Name: Soda_can
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: d6fc65b68d9d3a747b034fb03868a26e, type: 3}
+  prefab: {fileID: 8653762056189414540, guid: 8b347620a9740d6409b46b353c7bc7c8, type: 3}
+  id: 2
+  displayed_name: Soda can
+  description: A soda can, time for a lil boost
+  max_stack_size: 4

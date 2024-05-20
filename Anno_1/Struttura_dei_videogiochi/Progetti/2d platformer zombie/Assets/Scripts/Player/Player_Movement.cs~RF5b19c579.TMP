@@ -1,0 +1,95 @@
+using UnityEngine;
+
+public class Player_Movement : MonoBehaviour
+{
+    public float player_speed;
+    public float player_jumping_force;
+
+    private Rigidbody2D rb;
+    private GM gm;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        gm = GM.Instance;
+    }
+
+    private float horizontal;
+
+    // if true, can jump
+    private bool jump = true;
+
+    // Update is called once per frame
+    void Update()
+    {
+        horizontal = Input.GetAxisRaw("Horizontal");
+        if (horizontal != 0) gm.Player_horizontal = horizontal;
+
+        //inputs
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+    }
+
+    private bool facing_right = true;
+
+    void FixedUpdate()
+    {
+        // moves the player horizontally
+        rb.velocity = new Vector2(horizontal * player_speed, rb.velocity.y);
+
+        // flips the player when changing direction
+        if (horizontal > 0 && !facing_right)
+        {
+            Flip();
+        }
+        else if (horizontal < 0 && facing_right)
+        {
+            Flip();
+        }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (LayerMask.LayerToName(collision.gameObject.layer).Equals("Ground"))
+        {
+            jump = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (LayerMask.LayerToName(collision.gameObject.layer).Equals("Ground"))
+        {
+            jump = false;
+        }
+    }
+
+    // methods
+
+    private void Jump()
+    {
+        if (jump)
+        {
+            rb.AddForce(new Vector2(rb.velocity.x, player_jumping_force), ForceMode2D.Impulse);
+            jump = false;
+        }
+    }
+
+    public void Flip()
+    {
+        Vector3 cur_scale = transform.localScale;
+        cur_scale.x *= -1;
+        transform.localScale = cur_scale;
+
+        facing_right = !facing_right;
+    }
+
+    public Vector3 player_position()
+    {
+        return transform.position;
+    }
+}

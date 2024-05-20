@@ -1,0 +1,161 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Zombie_Handle : MonoBehaviour
+{
+    public int health;
+    public float speed_movement;
+    public int damage;
+    public float damage_delay;
+    public float knockback_horizontal;
+    public float knockback_vertical;
+    public GameObject player;
+
+    public bool can_damage;
+
+    private int current_health;
+    private bool facing_right;
+
+    Rigidbody2D rb;
+    Player_Movement pm;
+    Player_Handle ph;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        current_health = health;
+        can_damage = true;
+        rb = GetComponent<Rigidbody2D>();
+        pm = player.GetComponent<Player_Movement>();
+        ph = player.GetComponent<Player_Handle>();
+        previous_position = transform.position;
+    }
+
+    public float horizontal;
+
+    Vector3 previous_position;
+
+    // Update is called once per frame
+    void Update()
+    {
+        // updating direction of zombie
+        if (previous_position.x > transform.position.x)
+        {
+            horizontal = -1;
+        }
+        else if (previous_position.x < transform.position.x)
+        {
+            horizontal = 1;
+        }
+        else
+        {
+            horizontal = 0;
+        }
+        previous_position = transform.position;
+    }
+
+    void FixedUpdate()
+    {
+        // if player visible
+        if (true)
+        {
+            Move_towards_player();
+        }
+
+        // flips the zombie when changing direction
+        if (horizontal > 0 && !facing_right)
+        {
+            Flip();
+            Debug.Log("Flip right");
+        }
+        else if (horizontal < 0 && facing_right)
+        {
+            Flip();
+            Debug.Log("Flip left");
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (can_damage) StartCoroutine(Damage_player());
+        }
+    }
+
+    // methods
+
+    private IEnumerator Damage_player()
+    {
+        can_damage = false;
+
+        ph.Take_damage(damage);
+        if (ph.enabled) Knockback_player(); // if player is not dead, knockback
+        yield return new WaitForSeconds(damage_delay);
+
+        can_damage = true;
+    }
+
+    private void Knockback_player()
+    {
+        Vector3 direction = transform.position;
+
+        if (direction.x > 0)
+        {
+            Debug.Log("Knockback right");
+            // moving and facing right
+            pm.GetComponent<Rigidbody2D>().AddForce(new Vector2(knockback_horizontal, knockback_vertical), ForceMode2D.Impulse);
+        }
+        else if (direction.x < 0)
+        {
+            Debug.Log("Knockback left");
+            // moving and facing left
+            pm.GetComponent<Rigidbody2D>().AddForce(new Vector2(-knockback_horizontal, knockback_vertical), ForceMode2D.Force);
+        }
+    }
+
+    private void Move_towards_player()
+    {
+        Vector3 cur_position = transform.position;
+
+
+        Vector3 target_position = player.GetComponent<Player_Movement>().player_position();
+
+        Vector3 new_position = Vector3.MoveTowards(cur_position, target_position, speed_movement * Time.deltaTime);
+
+        transform.position = new_position;
+    }
+    public void Take_damage(int dmg)
+    {
+        current_health -= dmg;
+        Debug.Log("Cur health: " + current_health);
+        if (current_health < 1)
+        {
+            Die();
+        }
+        else
+        {
+            // Take damage
+            // ANIMATION
+        }
+    }
+
+    public void Die()
+    {
+        // ANIMATION
+
+        GetComponent<Collider2D>().enabled = false;
+        enabled = false;
+        Destroy(gameObject);
+    }
+
+    public void Flip()
+    {
+        Vector3 cur_scale = transform.localScale;
+        cur_scale.x *= -1;
+        transform.localScale = cur_scale;
+
+        facing_right = !facing_right;
+    }
+}
