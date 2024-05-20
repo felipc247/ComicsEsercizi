@@ -1,0 +1,3 @@
+- Il funzionamento del gioco si trova all'interno del pdf
+- Per aprirlo in Unity, dall'Unity hub aggiungere un progetto e cliccare la cartella che contiene tutti i file
+- L'Exe si trova all'interno della cartella Output
