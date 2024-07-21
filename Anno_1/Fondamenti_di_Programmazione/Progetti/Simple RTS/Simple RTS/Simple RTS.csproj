@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9EA3457E-FE84-4E09-938E-A6EF6DC7F11E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Simple_RTS</RootNamespace>
+    <AssemblyName>Simple RTS</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\Altare.cs" />
+    <Compile Include="Base\Arena.cs" />
+    <Compile Include="Base\Fornace.cs" />
+    <Compile Include="Base\Infermeria.cs" />
+    <Compile Include="Base\Mercato.cs" />
+    <Compile Include="Base\Prigione.cs" />
+    <Compile Include="Base\Torre.cs" />
+    <Compile Include="Combattimento\Attacco.cs" />
+    <Compile Include="Eroi\TipAttacco\Bruciatore.cs" />
+    <Compile Include="Eroi\TipDifesa\Angelo.cs" />
+    <Compile Include="Eroi\Eroe.cs" />
+    <Compile Include="Exceptions\Eroi\CooldownNonTerminatoException.cs" />
+    <Compile Include="Exceptions\Eroi\EroeGiaAggiuntoException.cs" />
+    <Compile Include="Exceptions\Eroi\EroeGiaEvocatoException.cs" />
+    <Compile Include="Exceptions\Eroi\EroeImprigionatoException.cs" />
+    <Compile Include="Exceptions\Eroi\EroeNonEvocatoException.cs" />
+    <Compile Include="Exceptions\Eroi\LimiteEroiRaggiuntoException.cs" />
+    <Compile Include="Exceptions\Gioco\NomeUgualeException.cs" />
+    <Compile Include="Exceptions\Input\FormattazioneNonValidaException.cs" />
+    <Compile Include="Exceptions\Risorse\AnimeAtkInsufficientiException.cs" />
+    <Compile Include="Exceptions\Risorse\AnimeDifInsufficientiException.cs" />
+    <Compile Include="Exceptions\Risorse\FrammentiInsufficientiException.cs" />
+    <Compile Include="Exceptions\Input\InputNonValidoException.cs" />
+    <Compile Include="Exceptions\Input\NumeroNonValidoException.cs" />
+    <Compile Include="Exceptions\Input\StringaVuotaException.cs" />
+    <Compile Include="Exceptions\Risorse\LimiteBluTurnoRaggiuntoException.cs" />
+    <Compile Include="Exceptions\Risorse\LuceBluInsufficienteException.cs" />
+    <Compile Include="Exceptions\Risorse\LuceBluMaxException.cs" />
+    <Compile Include="Exceptions\Strutture\FornaceLivelloMaxException.cs" />
+    <Compile Include="Exceptions\Truppe\TruppaLivelloMassimoException.cs" />
+    <Compile Include="Exceptions\Truppe\TruppeInsufficientiException.cs" />
+    <Compile Include="Exceptions\Truppe\TruppeNecessarieException.cs" />
+    <Compile Include="Exceptions\Truppe_Elite\TruppaEliteCoolDownNonTerminatoException.cs" />
+    <Compile Include="Exceptions\Truppe_Elite\TruppaEliteGiaAssoldataException.cs" />
+    <Compile Include="Exceptions\Truppe_Elite\TruppaEliteNonAssoldataException.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Giocatore.cs" />
+    <Compile Include="Truppe\Distanza\Arciere.cs" />
+    <Compile Include="Truppe\Mischia\Spadaccino.cs" />
+    <Compile Include="Truppe\Mischia\Soldato_Semplice.cs" />
+    <Compile Include="Truppe\Tank\Mammut.cs" />
+    <Compile Include="Truppe\Truppa.cs" />
+    <Compile Include="Truppe_Elite\Guerra\Distanza\Bombardiere Pazzo.cs" />
+    <Compile Include="Truppe_Elite\Guerra\Mischia\Vex.cs" />
+    <Compile Include="Truppe_Elite\Guerra\Tank\Colosso.cs" />
+    <Compile Include="Truppe_Elite\Guerra\Truppa_Elite_Guerra.cs" />
+    <Compile Include="Truppe_Elite\Supporto\Pan.cs" />
+    <Compile Include="Truppe_Elite\Truppa_Elite.cs" />
+    <Compile Include="Utilities\CC.cs" />
+    <Compile Include="Utilities\PS.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
