@@ -99,7 +99,7 @@ namespace Simple_RTS
             CleanConsole(giocatore1);
 
             // ATTACCO
-            if (turno > 0)
+            if (turno > 6)
             {
                 CC.GreenFr("<^> ATTACCO <^>\n");
                 if (Richiesta_Attacco(giocatore1))
@@ -253,14 +253,14 @@ namespace Simple_RTS
             giocatore1 = new Giocatore(nome_g1);
 
             mercato1 = new Mercato(giocatore1);
-            arena1.SetUp(giocatore1, mercato1);
+            arena1.SetUp(giocatore1);
             altare1.SetUp(giocatore1);
 
             // SET UP G2
             giocatore2 = new Giocatore(nome_g2);
 
             mercato2 = new Mercato(giocatore2);
-            arena2.SetUp(giocatore2, mercato2);
+            arena2.SetUp(giocatore2);
             altare2.SetUp(giocatore2);
 
             // SET UP DEAD LOCK

@@ -18,17 +18,15 @@ namespace Simple_RTS.Base
     internal class Arena
     {
         private Giocatore giocatore;
-        private Mercato mercato;
 
         public Arena()
         {
 
         }
 
-        public void SetUp(Giocatore giocatore, Mercato mercato)
+        public void SetUp(Giocatore giocatore)
         {
             this.giocatore = giocatore;
-            this.mercato = mercato;
         }
 
         public void PrintTruppeAssoldaTruppe(List<Truppa> truppas)

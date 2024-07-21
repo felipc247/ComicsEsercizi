@@ -12,3 +12,10 @@ C:\Users\STUDENTE\source\repos\Simple RTS\Simple RTS\obj\Debug\Simple RTS.csproj
 C:\Users\STUDENTE\source\repos\Simple RTS\Simple RTS\obj\Debug\Simple RTS.csproj.CoreCompileInputs.cache
 C:\Users\STUDENTE\source\repos\Simple RTS\Simple RTS\obj\Debug\Simple RTS.exe
 C:\Users\STUDENTE\source\repos\Simple RTS\Simple RTS\obj\Debug\Simple RTS.pdb
+C:\Users\felip\OneDrive\Documenti\Github\ComicsEsercizi\Anno_1\Fondamenti_di_Programmazione\Progetti\Simple RTS\Simple RTS\bin\Debug\Simple RTS.exe.config
+C:\Users\felip\OneDrive\Documenti\Github\ComicsEsercizi\Anno_1\Fondamenti_di_Programmazione\Progetti\Simple RTS\Simple RTS\bin\Debug\Simple RTS.exe
+C:\Users\felip\OneDrive\Documenti\Github\ComicsEsercizi\Anno_1\Fondamenti_di_Programmazione\Progetti\Simple RTS\Simple RTS\bin\Debug\Simple RTS.pdb
+C:\Users\felip\OneDrive\Documenti\Github\ComicsEsercizi\Anno_1\Fondamenti_di_Programmazione\Progetti\Simple RTS\Simple RTS\obj\Debug\Simple RTS.csproj.AssemblyReference.cache
+C:\Users\felip\OneDrive\Documenti\Github\ComicsEsercizi\Anno_1\Fondamenti_di_Programmazione\Progetti\Simple RTS\Simple RTS\obj\Debug\Simple RTS.csproj.CoreCompileInputs.cache
+C:\Users\felip\OneDrive\Documenti\Github\ComicsEsercizi\Anno_1\Fondamenti_di_Programmazione\Progetti\Simple RTS\Simple RTS\obj\Debug\Simple RTS.exe
+C:\Users\felip\OneDrive\Documenti\Github\ComicsEsercizi\Anno_1\Fondamenti_di_Programmazione\Progetti\Simple RTS\Simple RTS\obj\Debug\Simple RTS.pdb

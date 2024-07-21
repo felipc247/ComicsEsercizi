@@ -11,7 +11,7 @@ namespace Simple_RTS.Base
     // Produce Frammenti ogni tuo turno
     internal class Fornace
     {
-        private int frammenti = 50000;
+        private int frammenti = 3000;
         private int produzione = 200;
         private int livello = 1;
         private int[] costi_Potenziamento = { 1000, 2500, 5000, 15000 };
